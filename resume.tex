@@ -53,13 +53,6 @@
 \setlength{\parindent}{0pt} % no indentation
 \setlength{\topskip}{0pt} % no top skip
 \setlength{\columnsep}{0cm} % set column seperation
-\makeatletter
-\let\ps@customFooterStyle\ps@plain % Copy the plain style to customFooterStyle
-\patchcmd{\ps@customFooterStyle}{\thepage}{
-    \color{gray}\textit{\small Akshit Mehta - Page \thepage{} of \pageref*{LastPage}}
-}{}{} % replace number by desired string
-\makeatother
-\pagestyle{customFooterStyle}
 
 \titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
 
@@ -68,17 +61,17 @@
     -1pt
 }{
     % top space:
-    0.15 cm
+    0.10 cm
 }{
     % bottom space:
-    0.1 cm
+    0.08 cm
 } % section title spacing
 
 \renewcommand\labelitemi{$\circ$} % custom bullet points
 \newenvironment{highlights}{
     \begin{itemize}[
-        topsep=0.05 cm,
-        parsep=0.05 cm,
+        topsep=0.02 cm,
+        parsep=0.02 cm,
         partopsep=0pt,
         itemsep=0pt,
         leftmargin=0.4 cm + 10pt
@@ -89,8 +82,8 @@
 
 \newenvironment{highlightsforbulletentries}{
     \begin{itemize}[
-        topsep=0.05 cm,
-        parsep=0.05 cm,
+        topsep=0.02 cm,
+        parsep=0.02 cm,
         partopsep=0pt,
         itemsep=0pt,
         leftmargin=10pt
@@ -127,16 +120,7 @@
     \par\kern\topsep
 } % new environment for the header
 
-\newcommand{\placelastupdatedtext}{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
-  \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
-    \put(
-        \LenToUnit{\paperwidth-2 cm-0.2 cm+0.05cm},
-        \LenToUnit{\paperheight-1.0 cm}
-    ){\vtop{{\null}\makebox[0pt][c]{
-        \small\color{gray}\textit{Last updated in January 2025}\hspace{\widthof{Last updated in January 2025}}
-    }}}%
-  }%
-}%
+
 
 % save the original href command in a new command:
 \let\hrefWithoutArrow\href
@@ -153,7 +137,6 @@
     \newsavebox\ANDbox
     \sbox\ANDbox{}
 
-    \placelastupdatedtext
     \begin{header}
         \textbf{\fontsize{20 pt}{20 pt}\selectfont Akshit Mehta}
 
@@ -195,7 +178,7 @@
             \textit{Bachelor of Technology in Information Technology, CGPA 9.31}
         \end{twocolentry}
 
-        \vspace{0.15 cm}
+        \vspace{0.10 cm}
 
         \begin{twocolentry}{
         \textit{Chennai}
@@ -206,26 +189,15 @@
             \textit{Bachelor of Science in Data Science, CGPA 9.14}
         \end{twocolentry}
 
-        \vspace{0.15 cm}
+        \vspace{0.10 cm}
 
         \begin{twocolentry}{
         \textit{Meerut}
 
-        \textit{2023}}
+        \textit{2021 -- 2023}}
             \textbf{Guru Tegh Bahadur Public School}
 
-            \textit{Class 12th, Percentage: 97\%}
-        \end{twocolentry}
-
-        \vspace{0.15 cm}
-
-        \begin{twocolentry}{
-        \textit{Meerut}
-
-        \textit{2021}}
-            \textbf{Guru Tegh Bahadur Public School}
-
-            \textit{Class 10th, Percentage: 97\%}
+            \textit{Class 10th \& 12th, Percentage: 97\%}
         \end{twocolentry}
 
 
@@ -238,17 +210,16 @@
             \textit{Bootstrap, SQLite, Flask, Jinja2, Matplotlib, SQLAlchemy}
         \end{twocolentry}
 
-        \vspace{0.05 cm}
+        \vspace{0.02 cm}
         \begin{onecolentry}
             \begin{highlights}
-                \item Developed a comprehensive quiz management system using Flask framework with SQLAlchemy ORM and SQLite database, enabling administrators to create subjects, chapters, quizzes, and questions while providing users with timed quiz functionality and performance tracking.
-                \item Built RESTful API endpoints with comprehensive CRUD operations for quiz management, user authentication, and score tracking.
-                \item Implemented secure user authentication and role-based authorization using Flask-Login with session management.
-                \item Earned an \textbf{S grade} for the project in a course at \textbf{IIT Madras.}
+                \item Developed a comprehensive quiz management system using Flask with SQLAlchemy ORM and SQLite database, enabling administrators to create subjects, chapters, quizzes, and questions with timed quiz functionality and performance tracking.
+                \item Built RESTful API endpoints with CRUD operations for quiz management, user authentication, and score tracking.
+                \item Implemented secure user authentication and role-based authorization using Flask-Login. Earned an \textbf{S grade} at \textbf{IIT Madras.}
             \end{highlights}
         \end{onecolentry}
 
-        \vspace{0.15 cm}
+        \vspace{0.10 cm}
 
         \begin{twocolentry}{
         \textit{\href{https://clip-rewrite.onrender.com}{Live} | \href{https://github.com/akshitmehta0136/clip-rewrite}{Code}}}
@@ -257,30 +228,29 @@
             \textit{FastAPI, Jinja2, Pygments, SQLAlchemy, Docker}
         \end{twocolentry}
 
-        \vspace{0.05 cm}
+        \vspace{0.02 cm}
         \begin{onecolentry}
             \begin{highlights}
-                \item Developed a temporary clipboard sharing service using FastAPI, SQLAlchemy ORM, and Jinja2 templating with a responsive dark-themed UI.
-                \item Integrated Pygments syntax highlighting for 13+ programming languages, clipboard functionality, automatic language detection, and configurable content expiration (1 hour to 30 days).
-                \item Implemented multi-file upload functionality with automatic organization, ZIP compression for bulk downloads.
-                \item Implemented time-based content expiration, filename sanitization, database transaction management, and temporary file storage with automatic cleanup mechanisms.
+                \item Developed a temporary clipboard sharing service using FastAPI, SQLAlchemy ORM, and Jinja2 with a responsive dark-themed UI.
+                \item Integrated Pygments syntax highlighting for 13+ languages, clipboard functionality, automatic language detection, and configurable content expiration (1 hour to 30 days).
+                \item Implemented multi-file upload with automatic organization, ZIP compression, time-based expiration, and automatic cleanup mechanisms.
             \end{highlights}
         \end{onecolentry}
 
-        \vspace{0.15 cm}
+        \vspace{0.10 cm}
 
         \begin{twocolentry}{
-        \textit{\href{https://github.com/akshitmehta0136/doc-rp-backend}{Code}}}
-            \textbf{Doc-RP Backend}
+        \textit{\href{https://github.com/23f3001694/tds-p-1}{Code} | \href{https://tds-p-1.onrender.com/}{Live}}}
+            \textbf{Automated GitHub Pages Deployment System}
 
-            \textit{Flask, Pytest, Faker, JWT}
+            \textit{FastAPI, Python, Groq API, Gemini API, PyGithub, Docker}
         \end{twocolentry}
 
-        \vspace{0.05 cm}
+        \vspace{0.02 cm}
         \begin{onecolentry}
             \begin{highlights}
-                \item Designed modular Flask Blueprints for maintainability and clear API structure. Built statistical endpoints for clinic performance insights and CSV export.
-                \item Implemented secured access with JWT-based login, role-based permissions, and password hashing.
+                \item Built an automated LLM-powered system that generates web applications from text briefs and deploys to GitHub Pages with deployment verification.
+                \item Implemented dual-LLM architecture with 3-tier fallback (Groq → Gemini → HTML) supporting 32K tokens, achieving 99.9\%+ uptime.
             \end{highlights}
         \end{onecolentry}
 
@@ -291,31 +261,31 @@
             \textbf{Languages:} Python, Bash, Java, SQL, HTML, CSS, Javascript
         \end{onecolentry}
 
-        \vspace{0.15 cm}
+        \vspace{0.10 cm}
 
         \begin{onecolentry}
             \textbf{Frameworks and Libraries:} Pandas, Numpy, BeautifulSoup, Flask, Bootstrap, Pytest, SQLAlchemy, FastAPI
         \end{onecolentry}
 
-        \vspace{0.15 cm}
+        \vspace{0.10 cm}
 
         \begin{onecolentry}
             \textbf{Tools:} Linux, Git, Markdown, Docker, Postman, OSX, Jupyter, REST Api, fish, sed
         \end{onecolentry}
 
-        \vspace{0.15 cm}
+        \vspace{0.10 cm}
 
         \begin{onecolentry}
             \textbf{Databases:} MySQL, SQLite, MariaDB, MongoDB
         \end{onecolentry}
 
-        \vspace{0.15 cm}
+        \vspace{0.10 cm}
 
         \begin{onecolentry}
             \textbf{Concepts \& Practices:} RESTful APIs, MVC Architecture, Agile Methodology, Software \& System Design Principles
         \end{onecolentry}
 
-        \vspace{0.15 cm}
+        \vspace{0.10 cm}
 
         \begin{onecolentry}
             \textbf{Coursework:} Object-Oriented Programming, Database Management Systems, Modern App Development, System Commands
@@ -326,25 +296,12 @@
 
         \begin{onecolentry}
             \begin{highlightsforbulletentries}
-                \item \textbf{Python Developer} -- JetBrains Academy
-
-                Completed 265 topics and built 10 real-world projects (OOP, file I/O, data structures, Flask). Maintained a 300-day learning streak.
-
-                \item \textbf{SQL for Data Analysis} -- JetBrains Academy
-
-                Covered querying, joins, aggregation, subqueries, and real-world data analysis use cases.
-
-                \item \textbf{Git} -- JetBrains Academy
-
-                Learned version control concepts, branching strategies, merge workflows, and collaboration with Git.
-
-                \item \textbf{Open Source \& GitHub}
-
-                Received 50+ stars across personal and open-source projects on GitHub; Contributed to open-source repositories in Hacktoberfest.
-
-                \item Reached final round of Python Coding Challenge 3.0 at IIT Madras Paradox'24, showing experience in python
-
-                \item Participated in Codeseva and Hacknovate (Sustainable development hackathon) in MAIT
+                \item \textbf{Python Developer} -- JetBrains Academy: Completed 265 topics, built 10 projects (OOP, file I/O, Flask), 300-day streak.
+                \item \textbf{SQL for Data Analysis} -- JetBrains Academy: Querying, joins, aggregation, subqueries, data analysis.
+                \item \textbf{Git} -- JetBrains Academy: Version control, branching strategies, merge workflows, collaboration.
+                \item \textbf{Open Source}: 50+ stars on GitHub projects; Contributed to Hacktoberfest repositories.
+                \item Reached final round of Python Coding Challenge 3.0 at IIT Madras Paradox'24
+                \item Participated in Codeseva and Hacknovate hackathons in MAIT
             \end{highlightsforbulletentries}
         \end{onecolentry}
 
