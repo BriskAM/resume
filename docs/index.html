@@ -168,6 +168,21 @@
         font-size: 13px;
       }
 
+      .version-list {
+        display: grid;
+        gap: 8px;
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .version-list a {
+        color: rgb(209 250 229 / 88%);
+        font-size: 13px;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
       .life-link {
         position: fixed;
         top: 16px;
@@ -209,7 +224,8 @@
         <div class="actions">
           <a class="button primary" href="akshit_mehta_resume.pdf" download>Download PDF</a>
           <a class="button" href="akshit_mehta_resume.pdf">Open PDF</a>
-          <a class="button" href="__BACKUP_URL__">Backup Mirror</a>
+          <!-- CATBOX_LINK -->
+          <a class="button" href="#versions">Version History</a>
           <a class="button" href="https://github.com/BriskAM/resume">Source</a>
         </div>
       </section>
@@ -219,11 +235,16 @@
         <div class="cards">
           <article class="card emerald">
             <h2>Automatically published</h2>
-            <p>GitHub Actions compiles the LaTeX source, uploads a fresh backup mirror, and deploys this page on every push.</p>
+            <p>GitHub Actions compiles the LaTeX source, archives changed PDFs in git, attempts a 30-second Catbox mirror upload, and deploys this page on every push.</p>
           </article>
           <article class="card slate">
             <h2>Primary links</h2>
             <p class="meta">briskam.github.io/resume · github.com/BriskAM/resume</p>
+          </article>
+          <article class="card slate" id="versions">
+            <h2>Version history</h2>
+            <p>Older generated PDFs saved from resume content changes.</p>
+            <!-- VERSION_LINKS -->
           </article>
         </div>
       </section>

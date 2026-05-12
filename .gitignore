@@ -7,6 +7,7 @@ __pycache__/
 .venv/
 build/
 dist/
+public/
 *.egg-info/
 
 # LaTeX build artifacts
@@ -21,6 +22,9 @@ dist/
 
 # Generated PDFs
 *.pdf
+!versions/
+!versions/*.pdf
+!versions/.gitkeep
 
 # Keep source-controlled documentation and config explicit.
 !.gitignore

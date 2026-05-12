@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -31,6 +31,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
             lmodern \
+            poppler-utils \
             texlive-latex-base \
             texlive-latex-recommended \
             texlive-latex-extra \
@@ -68,22 +69,112 @@ jobs:
       - name: Build resume
         run: ./compile.sh
 
-      - name: Upload backup mirror
-        id: backup
+      - name: Archive changed resume PDF
         run: |
-          backup_url="$(curl -fsS -F 'reqtype=fileupload' -F 'fileToUpload=@akshit_mehta_resume.pdf;type=application/pdf' https://catbox.moe/user/api.php)"
-          case "$backup_url" in
+          mkdir -p versions
+          should_archive=1
+          latest_version="$(find versions -maxdepth 1 -name '*.pdf' -type f | sort | tail -n 1 || true)"
+
+          if [ -n "$latest_version" ]; then
+            pdftotext akshit_mehta_resume.pdf /tmp/current-resume.txt
+            pdftotext "$latest_version" /tmp/latest-resume.txt
+            if cmp -s /tmp/current-resume.txt /tmp/latest-resume.txt; then
+              should_archive=0
+              echo "Latest archived PDF already matches the generated resume content."
+            fi
+          fi
+
+          if [ "$should_archive" -eq 1 ]; then
+            stamp="$(date -u +'%Y-%m-%d-%H%M')"
+            short_sha="$(printf '%s' "$GITHUB_SHA" | cut -c1-7)"
+            cp akshit_mehta_resume.pdf "versions/akshit-mehta-resume-${stamp}-${short_sha}.pdf"
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add versions
+            git commit -m "Archive resume PDF ${stamp} [skip ci]" || true
+            git push
+          fi
+
+      - name: Upload Catbox mirror
+        id: catbox
+        run: |
+          catbox_url="$(curl -fsS --connect-timeout 10 --max-time 30 \
+            -F 'reqtype=fileupload' \
+            -F 'fileToUpload=@akshit_mehta_resume.pdf;type=application/pdf' \
+            https://catbox.moe/user/api.php || true)"
+
+          case "$catbox_url" in
             https://*) ;;
-            *) echo "Unexpected Catbox response: $backup_url" >&2; exit 1 ;;
+            *)
+              echo "Catbox upload did not complete within 30 seconds or returned an unexpected response." >&2
+              catbox_url=""
+              ;;
           esac
-          echo "url=$backup_url" >> "$GITHUB_OUTPUT"
+
+          echo "url=$catbox_url" >> "$GITHUB_OUTPUT"
 
       - name: Prepare Pages artifact
         run: |
           mkdir -p public
-          sed "s|__BACKUP_URL__|${{ steps.backup.outputs.url }}|g" docs/index.html > public/index.html
-          printf '%s\n' "${{ steps.backup.outputs.url }}" > public/backup-url.txt
+          mkdir -p public/versions
           cp akshit_mehta_resume.pdf public/akshit_mehta_resume.pdf
+          find versions -maxdepth 1 -name '*.pdf' -type f -exec cp {} public/versions/ \;
+
+          python3 - <<'PY'
+          from html import escape
+          from pathlib import Path
+
+          def label_for(path: Path) -> str:
+              stem = path.stem.removeprefix("akshit-mehta-resume-")
+              parts = stem.split("-")
+              if len(parts) >= 5:
+                  timestamp = f"{parts[0]}-{parts[1]}-{parts[2]} {parts[3][:2]}:{parts[3][2:]} UTC"
+                  return f"{timestamp} ({parts[4]})"
+              return stem.replace("-", " ")
+
+          versions = sorted(Path("versions").glob("*.pdf"), reverse=True)
+          main_items = []
+          index_items = []
+          for version in versions[:8]:
+              name = escape(version.name)
+              label = escape(label_for(version))
+              main_items.append(f'  <li><a href="versions/{name}">{label}</a></li>')
+              index_items.append(f'  <li><a href="{name}">{label}</a></li>')
+
+          if not main_items:
+              main_items.append("  <li>No archived versions yet.</li>")
+              index_items.append("  <li>No archived versions yet.</li>")
+
+          version_links = "<ul class=\"version-list\">\n" + "\n".join(main_items) + "\n</ul>\n"
+          catbox_url = "${{ steps.catbox.outputs.url }}"
+          if catbox_url:
+              catbox_link = f'<a class="button" href="{escape(catbox_url)}">Catbox Mirror</a>'
+          else:
+              catbox_link = ""
+
+          template = Path("docs/index.html").read_text()
+          html = template.replace("<!-- VERSION_LINKS -->", version_links)
+          html = html.replace("<!-- CATBOX_LINK -->", catbox_link)
+          Path("public/index.html").write_text(html)
+
+          version_index = """<!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <title>Resume Version History</title>
+            </head>
+            <body>
+              <h1>Resume Version History</h1>
+              <ul>
+          """ + "\n".join(index_items) + """
+              </ul>
+              <p><a href="../">Back to latest resume</a></p>
+            </body>
+          </html>
+          """
+          Path("public/versions/index.html").write_text(version_index)
+          PY
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
