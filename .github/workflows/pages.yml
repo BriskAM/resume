@@ -68,10 +68,21 @@ jobs:
       - name: Build resume
         run: ./compile.sh
 
+      - name: Upload backup mirror
+        id: backup
+        run: |
+          backup_url="$(curl -fsS -F 'reqtype=fileupload' -F 'fileToUpload=@akshit_mehta_resume.pdf;type=application/pdf' https://catbox.moe/user/api.php)"
+          case "$backup_url" in
+            https://*) ;;
+            *) echo "Unexpected Catbox response: $backup_url" >&2; exit 1 ;;
+          esac
+          echo "url=$backup_url" >> "$GITHUB_OUTPUT"
+
       - name: Prepare Pages artifact
         run: |
           mkdir -p public
-          cp docs/index.html public/index.html
+          sed "s|__BACKUP_URL__|${{ steps.backup.outputs.url }}|g" docs/index.html > public/index.html
+          printf '%s\n' "${{ steps.backup.outputs.url }}" > public/backup-url.txt
           cp akshit_mehta_resume.pdf public/akshit_mehta_resume.pdf
 
       - name: Upload Pages artifact

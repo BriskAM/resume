@@ -9,9 +9,7 @@ The latest generated PDF is available at:
 - https://briskam.github.io/resume/
 - https://briskam.github.io/resume/akshit_mehta_resume.pdf
 
-Backup mirror:
-
-- https://files.catbox.moe/peyq2x.pdf
+The page also includes a Catbox backup mirror generated during each deployment.
 
 ## Build Locally
 
@@ -29,4 +27,4 @@ The build writes `akshit_mehta_resume.pdf` in the repository root.
 
 ## CI/CD
 
-GitHub Actions builds the resume PDF on every push to `master` and publishes a small GitHub Pages site with a direct PDF download link.
+GitHub Actions builds the resume PDF on every push to `master`, uploads a fresh Catbox backup mirror, and publishes a GitHub Pages site with direct download links.

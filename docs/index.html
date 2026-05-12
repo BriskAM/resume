@@ -5,50 +5,135 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Akshit Mehta Resume</title>
     <meta name="description" content="Latest resume PDF for Akshit Mehta.">
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
       :root {
-        color-scheme: light dark;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        line-height: 1.5;
+        color-scheme: dark;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #0a0a0a;
+        color: #e5e7eb;
+      }
+
+      * {
+        box-sizing: border-box;
       }
 
       body {
         margin: 0;
         min-height: 100vh;
-        display: grid;
-        place-items: center;
-        background: #f6f7f9;
-        color: #15171a;
+        background: #0a0a0a;
+        overflow-x: hidden;
       }
 
-      main {
-        width: min(680px, calc(100vw - 32px));
-        padding: 32px;
-        border: 1px solid #d8dde5;
-        border-radius: 8px;
-        background: #ffffff;
+      canvas {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .shell {
+        position: relative;
+        z-index: 1;
+        width: min(920px, calc(100vw - 32px));
+        min-height: 100vh;
+        margin: 0 auto;
+        padding: 56px 0;
+        display: grid;
+        align-content: center;
+        gap: 28px;
+      }
+
+      .hero {
+        border: 1px solid rgb(255 255 255 / 10%);
+        background: linear-gradient(135deg, rgb(30 41 59 / 76%), rgb(49 46 129 / 72%));
+        backdrop-filter: blur(14px);
+        padding: 28px;
+      }
+
+      .eyebrow {
+        margin: 0 0 10px;
+        color: rgb(196 181 253 / 82%);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0;
       }
 
       h1 {
-        margin: 0 0 8px;
-        font-size: 28px;
+        margin: 0;
+        color: #ffffff;
+        font-size: clamp(32px, 7vw, 64px);
+        line-height: 1;
+        letter-spacing: 0;
       }
 
-      p {
-        margin: 0 0 20px;
-        color: #4d5663;
+      .summary {
+        margin: 16px 0 0;
+        max-width: 680px;
+        color: rgb(226 232 240 / 80%);
+        font-size: 16px;
       }
 
-      a {
-        color: #0b57d0;
-        text-decoration: underline;
-        text-underline-offset: 3px;
+      .grid {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 20px;
+        align-items: start;
+      }
+
+      .section-title {
+        margin: 0;
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .cards {
+        display: grid;
+        gap: 14px;
+      }
+
+      .card {
+        border: 1px solid rgb(255 255 255 / 10%);
+        background: linear-gradient(135deg, rgb(88 28 135 / 72%), rgb(76 29 149 / 72%));
+        padding: 20px;
+        backdrop-filter: blur(14px);
+      }
+
+      .card.slate {
+        background: linear-gradient(135deg, rgb(51 65 85 / 74%), rgb(30 41 59 / 74%));
+      }
+
+      .card.emerald {
+        background: linear-gradient(135deg, rgb(6 95 70 / 72%), rgb(6 78 59 / 72%));
+      }
+
+      .card h2 {
+        margin: 0 0 6px;
+        color: #ffffff;
+        font-size: 18px;
+      }
+
+      .card p {
+        margin: 0;
+        color: rgb(237 233 254 / 78%);
+        font-size: 14px;
       }
 
       .actions {
         display: flex;
         flex-wrap: wrap;
-        gap: 12px;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      a {
+        color: inherit;
       }
 
       .button {
@@ -57,57 +142,183 @@
         justify-content: center;
         min-height: 40px;
         padding: 0 14px;
-        border: 1px solid #0b57d0;
-        border-radius: 6px;
+        border: 1px solid rgb(255 255 255 / 16%);
+        background: rgb(255 255 255 / 8%);
+        color: #ffffff;
+        font-size: 14px;
         font-weight: 600;
         text-decoration: none;
+        transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+      }
+
+      .button:hover {
+        transform: translateY(-1px);
+        background: rgb(255 255 255 / 14%);
+        border-color: rgb(255 255 255 / 30%);
       }
 
       .button.primary {
-        background: #0b57d0;
-        color: #ffffff;
+        background: rgb(16 185 129 / 92%);
+        border-color: rgb(110 231 183 / 60%);
+        color: #04130d;
       }
 
-      @media (prefers-color-scheme: dark) {
-        body {
-          background: #111318;
-          color: #f2f4f8;
+      .meta {
+        color: rgb(148 163 184 / 82%);
+        font-size: 13px;
+      }
+
+      .life-link {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        z-index: 2;
+        color: rgb(156 163 175 / 72%);
+        font-size: 13px;
+        text-decoration: none;
+      }
+
+      .life-link:hover {
+        color: #d1d5db;
+      }
+
+      @media (max-width: 760px) {
+        .shell {
+          padding: 28px 0;
         }
 
-        main {
-          background: #191c22;
-          border-color: #303642;
+        .hero {
+          padding: 22px;
         }
 
-        p {
-          color: #b8c0cc;
-        }
-
-        a {
-          color: #8ab4f8;
-        }
-
-        .button {
-          border-color: #8ab4f8;
-        }
-
-        .button.primary {
-          background: #8ab4f8;
-          color: #101318;
+        .grid {
+          grid-template-columns: 1fr;
         }
       }
     </style>
   </head>
   <body>
-    <main>
-      <h1>Akshit Mehta Resume</h1>
-      <p>Latest generated resume PDF. This page is rebuilt automatically from the LaTeX source in the GitHub repository.</p>
-      <div class="actions">
-        <a class="button primary" href="akshit_mehta_resume.pdf" download>Download PDF</a>
-        <a class="button" href="akshit_mehta_resume.pdf">Open PDF</a>
-        <a class="button" href="https://files.catbox.moe/peyq2x.pdf">Backup</a>
-        <a class="button" href="https://github.com/BriskAM/resume">Source</a>
-      </div>
+    <canvas id="life" aria-hidden="true"></canvas>
+    <a class="life-link" href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank" rel="noopener noreferrer">What's this?</a>
+
+    <main class="shell">
+      <section class="hero">
+        <p class="eyebrow">Latest generated PDF</p>
+        <h1>Akshit Mehta Resume</h1>
+        <p class="summary">Backend-focused software developer working with Python, Java, SQL, web APIs, data tooling, and deployment workflows.</p>
+        <div class="actions">
+          <a class="button primary" href="akshit_mehta_resume.pdf" download>Download PDF</a>
+          <a class="button" href="akshit_mehta_resume.pdf">Open PDF</a>
+          <a class="button" href="__BACKUP_URL__">Backup Mirror</a>
+          <a class="button" href="https://github.com/BriskAM/resume">Source</a>
+        </div>
+      </section>
+
+      <section class="grid">
+        <h2 class="section-title">Build</h2>
+        <div class="cards">
+          <article class="card emerald">
+            <h2>Automatically published</h2>
+            <p>GitHub Actions compiles the LaTeX source, uploads a fresh backup mirror, and deploys this page on every push.</p>
+          </article>
+          <article class="card slate">
+            <h2>Primary links</h2>
+            <p class="meta">briskam.github.io/resume · github.com/BriskAM/resume</p>
+          </article>
+        </div>
+      </section>
     </main>
+
+    <script>
+      const canvas = document.getElementById("life");
+      const ctx = canvas.getContext("2d");
+      const cellSize = 7;
+      const maxActiveCells = 800;
+      let cols = 0;
+      let rows = 0;
+      let grid = [];
+      let lastTime = 0;
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        cols = Math.ceil(canvas.width / cellSize);
+        rows = Math.ceil(canvas.height / cellSize);
+        grid = Array.from({ length: cols }, () =>
+          Array.from({ length: rows }, () => (Math.random() < 0.075 ? 1 : 0))
+        );
+      }
+
+      function activeCount(nextGrid = grid) {
+        let count = 0;
+        for (let x = 0; x < cols; x += 1) {
+          for (let y = 0; y < rows; y += 1) count += nextGrid[x][y];
+        }
+        return count;
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#333333";
+        for (let x = 0; x < cols; x += 1) {
+          for (let y = 0; y < rows; y += 1) {
+            if (grid[x][y]) ctx.fillRect(x * cellSize, y * cellSize, cellSize - 1, cellSize - 1);
+          }
+        }
+      }
+
+      function step() {
+        const next = grid.map((col) => col.slice());
+        for (let x = 0; x < cols; x += 1) {
+          for (let y = 0; y < rows; y += 1) {
+            let neighbors = 0;
+            for (let dx = -1; dx <= 1; dx += 1) {
+              for (let dy = -1; dy <= 1; dy += 1) {
+                if (dx === 0 && dy === 0) continue;
+                neighbors += grid[(x + dx + cols) % cols][(y + dy + rows) % rows];
+              }
+            }
+            if (!grid[x][y] && neighbors === 3) next[x][y] = 1;
+            if (grid[x][y] && (neighbors < 2 || neighbors > 3)) next[x][y] = 0;
+          }
+        }
+
+        if (activeCount(next) > maxActiveCells) {
+          const active = [];
+          for (let x = 0; x < cols; x += 1) {
+            for (let y = 0; y < rows; y += 1) if (next[x][y]) active.push([x, y]);
+          }
+          active.sort(() => Math.random() - 0.5).slice(maxActiveCells).forEach(([x, y]) => {
+            next[x][y] = 0;
+          });
+        }
+        grid = next;
+      }
+
+      function addCells(event) {
+        if (activeCount() >= maxActiveCells) return;
+        const x = Math.floor(event.clientX / cellSize);
+        const y = Math.floor(event.clientY / cellSize);
+        for (let dx = -1; dx <= 1; dx += 1) {
+          for (let dy = -1; dy <= 1; dy += 1) {
+            if (Math.random() > 0.5) grid[(x + dx + cols) % cols][(y + dy + rows) % rows] = 1;
+          }
+        }
+      }
+
+      function loop(time) {
+        if (time - lastTime > 66) {
+          draw();
+          step();
+          lastTime = time;
+        }
+        requestAnimationFrame(loop);
+      }
+
+      resize();
+      window.addEventListener("resize", resize);
+      window.addEventListener("mousemove", addCells);
+      requestAnimationFrame(loop);
+    </script>
   </body>
 </html>
