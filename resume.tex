@@ -1,12 +1,12 @@
-\documentclass[9pt, letterpaper]{article}
+\documentclass[10pt, letterpaper]{article}
 
 % Packages:
 \usepackage[
     ignoreheadfoot, % set margins without considering header and footer
-    top=1.2 cm, % seperation between body and page edge from the top
-    bottom=1.2 cm, % seperation between body and page edge from the bottom
-    left=1.5 cm, % seperation between body and page edge from the left
-    right=1.5 cm, % seperation between body and page edge from the right
+    top=0.5 cm, % seperation between body and page edge from the top
+    bottom=0.5 cm, % seperation between body and page edge from the bottom
+    left=1.0 cm, % seperation between body and page edge from the left
+    right=1.0 cm, % seperation between body and page edge from the right
     footskip=1.0 cm, % seperation between body and footer
     % showframe % for debugging
 ]{geometry} % for adjusting page geometry
@@ -14,7 +14,7 @@
 \usepackage{tabularx} % for making tables with fixed width columns
 \usepackage{array} % tabularx requires this
 \usepackage[dvipsnames]{xcolor} % for coloring text
-\definecolor{primaryColor}{RGB}{0, 79, 144} % define primary color
+\definecolor{primaryColor}{RGB}{0, 0, 0} % define primary color (black for links)
 \usepackage{enumitem} % for customizing lists
 \usepackage{fontawesome5} % for using icons
 \usepackage{amsmath} % for math
@@ -25,6 +25,7 @@
     colorlinks=true,
     urlcolor=primaryColor
 ]{hyperref} % for links, metadata and bookmarks
+\usepackage[normalem]{ulem} % for underlined printable links
 \usepackage[pscoord]{eso-pic} % for floating text on the page
 \usepackage{calc} % for calculating lengths
 \usepackage{bookmark} % for bookmarks
@@ -54,7 +55,7 @@
 \setlength{\topskip}{0pt} % no top skip
 \setlength{\columnsep}{0cm} % set column seperation
 
-\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+\titleformat{\section}{\needspace{1\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
 
 \titlespacing{\section}{
     % left space:
@@ -106,7 +107,7 @@
 \newenvironment{twocolentry}[2][]{
     \onecolentry
     \def\secondColumn{#2}
-    \setcolumnwidth{\fill, 4.5 cm}
+    \setcolumnwidth{\fill, 6.8 cm}
     \begin{paracol}{2}
 }{
     \switchcolumn \raggedleft \secondColumn
@@ -125,8 +126,10 @@
 % save the original href command in a new command:
 \let\hrefWithoutArrow\href
 
-% new command for external links:
-\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}
+% Keep links clickable without decorative glyphs that pollute ATS text extraction.
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\uline{#2}}}
+\newcommand{\printlink}[2]{\href{#1}{#2}}
+\newcommand{\printemaillink}[1]{\href{mailto:#1}{\nolinkurl{#1}}}
 
 
 \begin{document}
@@ -142,24 +145,28 @@
 
         \vspace{0.15 cm}
 
-        \normalsize
-        \mbox{{\color{black}\footnotesize\faMapMarker*}\hspace*{0.13cm}Delhi, India}%
+        \small
+        \mbox{Delhi, India}%
         \kern 0.25 cm%
         \AND%
         \kern 0.25 cm%
-        \mbox{\hrefWithoutArrow{mailto:akshitmehta0136@gmail.com}{\color{black}{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}akshitmehta0136@gmail.com}}%
+        \mbox{\printlink{https://amehta.space}{amehta.space}}%
         \kern 0.25 cm%
         \AND%
         \kern 0.25 cm%
-        \mbox{\hrefWithoutArrow{tel:+91-0000000000}{\color{black}{\footnotesize\faPhone*}\hspace*{0.13cm}+91 0000000000}}%
+        \mbox{\printemaillink{email@example.com}}%
         \kern 0.25 cm%
         \AND%
         \kern 0.25 cm%
-        \mbox{\hrefWithoutArrow{https://github.com/briskam}{\color{black}{\footnotesize\faGithub}\hspace*{0.13cm}Github}} / \mbox{\hrefWithoutArrow{https://github.com/23f3001694}{\color{black}2}}%
+        \mbox{\hrefWithoutArrow{tel:+91-0000000000}{+91 0000000000}}%
         \kern 0.25 cm%
         \AND%
         \kern 0.25 cm%
-        \mbox{\hrefWithoutArrow{http://www.linkedin.com/in/akshit-mehta-638688326}{\color{black}{\footnotesize\faLinkedinIn}\hspace*{0.13cm}Linkedin}}%
+        \mbox{\printlink{https://github.com/BriskAM}{github.com/BriskAM}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\printlink{https://www.linkedin.com/in/akshit-mehta2005}{linkedin.com/in/akshit-mehta2005}}%
     \end{header}
 
     \vspace{0.3 cm - 0.3 cm}
@@ -175,7 +182,7 @@
 
             \textit{Guru Gobind Singh Indraprastha University (GGSIPU)}
 
-            \textit{Bachelor of Technology in Information Technology, CGPA 9.31}
+            \textit{Bachelor of Technology in Information Technology, CGPA 9.33}
         \end{twocolentry}
 
         \vspace{0.10 cm}
@@ -186,7 +193,7 @@
         \textit{Expected 2027}}
             \textbf{Indian Institute of Technology Madras}
 
-            \textit{Bachelor of Science in Data Science, CGPA 9.14}
+            \textit{BS in Data Science and Applications, Diploma Level, CGPA 9.05}
         \end{twocolentry}
 
         \vspace{0.10 cm}
@@ -201,10 +208,32 @@
         \end{twocolentry}
 
 
+    \section{Work Experience}
+
+        \begin{twocolentry}{
+        \textit{Remote}
+
+        \textit{June -- July 2025}}
+            \textbf{OTET Infosystems}
+
+            \textit{Backend Developer Intern}
+        \end{twocolentry}
+
+        \vspace{0.02 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Led migration of production backend from Laravel to Django, reducing technical debt by 40\%.
+                \item Built RESTful APIs with Django REST Framework, integrating with frontend and third-party services.
+                \item Optimized database queries and ORM patterns, improving API response times by 30\%.
+                \item Worked across authentication, database models, and service-layer logic while maintaining API compatibility during migration.
+            \end{highlights}
+        \end{onecolentry}
+
+
     \section{Projects}
 
         \begin{twocolentry}{
-        \textit{\href{https://amehtaaaaaa-llm-tools.hf.space/healthz}{Live} | \href{https://github.com/23f3001694/llm-tools}{Code}}}
+        \textit{\footnotesize \printlink{https://tds.amehta.space}{tds.amehta.space}\\\printlink{https://github.com/23f3001694/llm-tools}{github.com/23f3001694/llm-tools}}}
             \textbf{TDS Quiz Solver}
 
             \textit{FastAPI, LangGraph, Playwright, Gemini API, Groq API, Docker}
@@ -216,14 +245,15 @@
                 \item Built an automated LLM-powered quiz-solving agent using LangGraph with multi-model support (Gemini, Groq, OpenRouter) and automatic failover for robust error handling.
                 \item Implemented sandboxed Python code execution with resource limits, task isolation in separate workspace directories, and structured JSON logging for debugging.
                 \item Designed RESTful API endpoints with FastAPI for quiz solving, task status tracking, and health checks, deployed on Hugging Face Spaces with Docker.
+                \item Added browser automation with Playwright to handle dynamic quiz pages and extract structured inputs for downstream LLM workflows.
             \end{highlights}
         \end{onecolentry}
 
         \vspace{0.10 cm}
 
         \begin{twocolentry}{
-        \textit{\href{http://clip.briskdev.xyz}{Live} | \href{https://github.com/BriskAM/clip-rewrite}{Code}}}
-            \textbf{Clip-Rewrite}
+        \textit{\footnotesize \printlink{https://clip.amehta.space}{clip.amehta.space}\\\printlink{https://github.com/BriskAM/clip-rewrite}{github.com/BriskAM/clip-rewrite}}}
+            \textbf{Clip Rewrite}
 
             \textit{FastAPI, Jinja2, Pygments, SQLAlchemy, Docker}
         \end{twocolentry}
@@ -234,61 +264,32 @@
                 \item Developed a temporary clipboard sharing service using FastAPI, SQLAlchemy ORM, and Jinja2 with a responsive dark-themed UI.
                 \item Integrated Pygments syntax highlighting for 13+ languages, clipboard functionality, automatic language detection, and configurable content expiration (1 hour to 30 days).
                 \item Implemented multi-file upload with automatic organization, ZIP compression, time-based expiration, and automatic cleanup mechanisms.
+                \item Added shareable paste routes, file previews, and cleanup workflows to support short-lived text and file exchange.
             \end{highlights}
         \end{onecolentry}
-
-        \vspace{0.10 cm}
-
-        \begin{twocolentry}{
-        \textit{\href{https://github.com/23f3001694/tds-p-1}{Code} | \href{https://tds-p-1.onrender.com/}{Live}}}
-            \textbf{Automated GitHub Pages Deployment System}
-
-            \textit{FastAPI, Python, Groq API, Gemini API, PyGithub, Docker}
-        \end{twocolentry}
-
-        \vspace{0.02 cm}
-        \begin{onecolentry}
-            \begin{highlights}
-                \item Built an automated LLM-powered system that generates web applications from text briefs and deploys to GitHub Pages with deployment verification.
-                \item Implemented dual-LLM architecture with 3-tier fallback (Groq → Gemini → HTML) supporting 32K tokens, achieving 99.9\%+ uptime.
-            \end{highlights}
-        \end{onecolentry}
-
 
     \section{Technical Skills}
 
         \begin{onecolentry}
-            \textbf{Languages:} Python, Bash, Java, SQL, HTML, CSS, Javascript
+            \textbf{Languages:} Python, Java, SQL, Bash, JavaScript, HTML/CSS
         \end{onecolentry}
 
-        \vspace{0.10 cm}
+        \vspace{0.06 cm}
 
         \begin{onecolentry}
-            \textbf{Frameworks and Libraries:} Pandas, Numpy, BeautifulSoup, Flask, Bootstrap, Pytest, SQLAlchemy, FastAPI, Vue.js
+            \textbf{Backend \& Data:} FastAPI, Flask, Django REST Framework, SQLAlchemy, Pandas, NumPy, BeautifulSoup, Pytest
         \end{onecolentry}
 
-        \vspace{0.10 cm}
+        \vspace{0.06 cm}
 
         \begin{onecolentry}
-            \textbf{Tools:} Linux, Git, Markdown, Docker, Postman, OSX, Jupyter, REST Api, fish, sed
+            \textbf{Tools \& Platforms:} Linux, Git, Docker, Postman, Jupyter, macOS, REST APIs, Hugging Face Spaces
         \end{onecolentry}
 
-        \vspace{0.10 cm}
+        \vspace{0.06 cm}
 
         \begin{onecolentry}
-            \textbf{Databases:} MySQL, SQLite, MariaDB, MongoDB
-        \end{onecolentry}
-
-        \vspace{0.10 cm}
-
-        \begin{onecolentry}
-            \textbf{Concepts \& Practices:} RESTful APIs, MVC Architecture, Agile Methodology, Software \& System Design Principles
-        \end{onecolentry}
-
-        \vspace{0.10 cm}
-
-        \begin{onecolentry}
-            \textbf{Coursework:} Object-Oriented Programming, Database Management Systems, Modern App Development, System Commands
+            \textbf{Databases \& Coursework:} MySQL, SQLite, MariaDB, MongoDB; OOP, DBMS, DSA, Machine Learning Foundations, System Commands, Modern App Development
         \end{onecolentry}
 
 
@@ -296,22 +297,14 @@
 
         \begin{onecolentry}
             \begin{highlightsforbulletentries}
-                \item \textbf{Python Developer} -- JetBrains Academy: Completed 265 topics, built 10 projects (OOP, file I/O, Flask), 300-day streak.
-                \item \textbf{SQL for Data Analysis} -- JetBrains Academy: Querying, joins, aggregation, subqueries, data analysis.
-                \item \textbf{Git} -- JetBrains Academy: Version control, branching strategies, merge workflows, collaboration.
-                \item \textbf{Open Source}: 50+ stars on GitHub projects; Contributed to Hacktoberfest repositories.
-                \item Reached final round of Python Coding Challenge 3.0 at IIT Madras Paradox'24
-                \item Participated in Codeseva and Hacknovate hackathons in MAIT
-            \end{highlightsforbulletentries}
-        \end{onecolentry}
-
-
-    \section{Extracurricular}
-
-        \begin{onecolentry}
-            \begin{highlightsforbulletentries}
-                \item \textbf{Devops Head} --- Google Developers Group MAIT
-                \item \textbf{Member} --- IOSD MAIT
+                \item \textbf{Diploma in Programming} -- IIT Madras BS Degree Programme; covered Python, Java, DSA, databases, and software development tools.
+                \item \textbf{Python Developer} -- JetBrains Academy; completed 265 topics and built 10 projects across OOP, file I/O, and Flask.
+                \item \textbf{SQL for Data Analysis} -- JetBrains Academy; practiced joins, aggregation, subqueries, and analysis-oriented querying.
+                \item \textbf{Open Source}: 90+ GitHub stars across public repos; contributed to Hacktoberfest repositories.
+                \item \textbf{ML Competitions}: Top-5 finish in Movie Review Sentiment Classification; top 6--7\% finishes in plant super-resolution, hotel cancellation prediction, and comment category prediction challenges.
+                \item Reached the final round of Python Coding Challenge 3.0 at IIT Madras Paradox'24.
+                \item Secured 2nd place in the McKinley Rice (Redrob) Korean Company Hackathon at MAIT, winning a cash prize of INR 20,000.
+                \item \textbf{DevOps Head} -- Google Developers Group MAIT; \textbf{Member} -- IOSD MAIT.
             \end{highlightsforbulletentries}
         \end{onecolentry}
 

@@ -1,1 +1,4 @@
-pdflatex resume.tex akshit_mehta_resume.pdf
+#!/bin/sh
+set -eu
+
+python3 main.py
