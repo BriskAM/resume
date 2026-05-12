@@ -4,7 +4,7 @@ LaTeX source and build automation for my resume.
 
 ## Download
 
-Once GitHub Pages is enabled, the latest generated PDF is available at:
+The latest generated PDF is available at:
 
 - https://briskam.github.io/resume/
 - https://briskam.github.io/resume/akshit_mehta_resume.pdf
