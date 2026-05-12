@@ -29,7 +29,41 @@ jobs:
       - name: Install LaTeX
         run: |
           sudo apt-get update
-          sudo apt-get install -y texlive-full
+          sudo apt-get install -y --no-install-recommends \
+            lmodern \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-plain-generic \
+            texlive-fonts-recommended \
+            texlive-fonts-extra
+
+      - name: Verify LaTeX packages
+        run: |
+          for package in \
+            geometry.sty \
+            titlesec.sty \
+            tabularx.sty \
+            array.sty \
+            xcolor.sty \
+            enumitem.sty \
+            fontawesome5.sty \
+            amsmath.sty \
+            hyperref.sty \
+            ulem.sty \
+            eso-pic.sty \
+            calc.sty \
+            bookmark.sty \
+            lastpage.sty \
+            changepage.sty \
+            paracol.sty \
+            ifthen.sty \
+            needspace.sty \
+            iftex.sty \
+            lmodern.sty
+          do
+            kpsewhich "$package"
+          done
 
       - name: Build resume
         run: ./compile.sh
