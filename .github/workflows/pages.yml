@@ -29,14 +29,7 @@ jobs:
       - name: Install LaTeX
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends \
-            lmodern \
-            texlive-latex-base \
-            texlive-latex-recommended \
-            texlive-latex-extra \
-            texlive-plain-generic \
-            texlive-fonts-recommended \
-            texlive-fonts-extra
+          sudo apt-get install -y texlive-full
 
       - name: Build resume
         run: ./compile.sh
