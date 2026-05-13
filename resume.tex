@@ -54,6 +54,11 @@
 \setlength{\parindent}{0pt} % no indentation
 \setlength{\topskip}{0pt} % no top skip
 \setlength{\columnsep}{0cm} % set column seperation
+\hyphenpenalty=10000 % prevent hyphenation (avoids garbled text in ATS PDF extraction)
+\exhyphenpenalty=10000
+\tolerance=1
+\emergencystretch=\maxdimen
+\sloppy % avoid overfull boxes without hyphenation
 
 \titleformat{\section}{\needspace{1\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
 
@@ -146,15 +151,7 @@
         \vspace{0.15 cm}
 
         \footnotesize
-        \mbox{Delhi}%
-        \kern 0.15 cm%
-        \AND%
-        \kern 0.15 cm%
-        \mbox{\printlink{https://amehta.space}{amehta.space}}%
-        \kern 0.15 cm%
-        \AND%
-        \kern 0.15 cm%
-        \mbox{\printemaillink{email@example.com}}%
+        \mbox{Delhi, India}%
         \kern 0.15 cm%
         \AND%
         \kern 0.15 cm%
@@ -162,11 +159,19 @@
         \kern 0.15 cm%
         \AND%
         \kern 0.15 cm%
-        \mbox{\printlink{https://github.com/BriskAM}{github.com/BriskAM}}%
+        \mbox{\printemaillink{email@example.com}}%
+
+        \vspace{0.05 cm}
+        
+        \mbox{Portfolio: \printlink{https://amehta.space}{amehta.space}}%
         \kern 0.15 cm%
         \AND%
         \kern 0.15 cm%
-        \mbox{\printlink{https://www.linkedin.com/in/akshit-mehta2005}{linkedin.com/in/akshit-mehta2005}}%
+        \mbox{GitHub: \printlink{https://github.com/BriskAM}{github.com/BriskAM}}%
+        \kern 0.15 cm%
+        \AND%
+        \kern 0.15 cm%
+        \mbox{LinkedIn: \printlink{https://www.linkedin.com/in/akshit-mehta2005}{linkedin.com/in/akshit-mehta2005}}%
     \end{header}
 
     \vspace{0.3 cm - 0.3 cm}
@@ -277,19 +282,25 @@
         \vspace{0.06 cm}
 
         \begin{onecolentry}
-            \textbf{Backend \& Data:} FastAPI, Flask, Django REST Framework, SQLAlchemy, Pandas, NumPy, scikit-learn, Matplotlib, Seaborn, BeautifulSoup, Pytest
+            \textbf{Backend:} FastAPI, Flask, Django REST Framework, REST APIs, SQLAlchemy, Pytest
         \end{onecolentry}
 
         \vspace{0.06 cm}
 
         \begin{onecolentry}
-            \textbf{Tools \& Platforms:} Linux, Git, GitHub Actions, Docker, Postman, Jupyter, Kaggle, macOS, REST APIs, Hugging Face Spaces
+            \textbf{Data \& ML:} Pandas, NumPy, scikit-learn, Matplotlib, Seaborn, BeautifulSoup
         \end{onecolentry}
 
         \vspace{0.06 cm}
 
         \begin{onecolentry}
-            \textbf{Databases \& Coursework:} MySQL, SQLite, MariaDB, MongoDB; OOP, DBMS, DSA, Machine Learning Foundations, System Commands, Modern App Development
+            \textbf{Tools:} Linux, Git, GitHub Actions, Docker, Postman, Jupyter, Kaggle, Hugging Face Spaces
+        \end{onecolentry}
+
+        \vspace{0.06 cm}
+
+        \begin{onecolentry}
+            \textbf{Databases:} MySQL, SQLite, MariaDB, MongoDB
         \end{onecolentry}
 
 
