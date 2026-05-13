@@ -225,7 +225,7 @@
           <a class="button primary" href="akshit_mehta_resume.pdf" download>Download PDF</a>
           <a class="button" href="akshit_mehta_resume.pdf">Open PDF</a>
           <!-- CATBOX_LINK -->
-          <a class="button" href="#versions">Version History</a>
+          <a class="button" href="#versions" id="history-btn">Version History</a>
           <a class="button" href="https://github.com/BriskAM/resume">Source</a>
         </div>
       </section>
@@ -335,6 +335,12 @@
         }
         requestAnimationFrame(loop);
       }
+
+      document.getElementById("history-btn").addEventListener("click", function (event) {
+        event.preventDefault();
+        const target = document.getElementById("versions");
+        if (target) target.scrollIntoView({ behavior: "smooth" });
+      });
 
       resize();
       window.addEventListener("resize", resize);

@@ -98,7 +98,7 @@ jobs:
       - name: Upload Catbox mirror
         id: catbox
         run: |
-          catbox_url="$(curl -fsS --connect-timeout 10 --max-time 30 \
+          catbox_url="$(curl -fsS --connect-timeout 30 --max-time 30 \
             -F 'reqtype=fileupload' \
             -F 'fileToUpload=@akshit_mehta_resume.pdf;type=application/pdf' \
             https://catbox.moe/user/api.php || true)"
