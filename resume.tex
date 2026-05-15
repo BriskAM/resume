@@ -257,19 +257,19 @@
         \vspace{0.10 cm}
 
         \begin{twocolentry}{
-        \textit{\footnotesize \printlink{https://clip.amehta.space}{clip.amehta.space}\\\printlink{https://github.com/BriskAM/clip-rewrite}{github.com/BriskAM/clip-rewrite}}}
-            \textbf{Clip Rewrite}
+        \textit{\footnotesize \printlink{https://briskam.github.io/leafsr}{briskam.github.io/leafsr}\\\printlink{https://github.com/BriskAM/leafsr}{github.com/BriskAM/leafsr}}}
+            \textbf{LeafSR}
 
-            \textit{FastAPI, Jinja2, Pygments, SQLAlchemy, Docker}
+            \textit{PyTorch, TorchVision, ESRGAN-lite, RRDB, Docker, GitHub Actions}
         \end{twocolentry}
 
         \vspace{0.02 cm}
         \begin{onecolentry}
             \begin{highlights}
-                \item Developed a temporary clipboard sharing service using \textbf{FastAPI}, \textbf{SQLAlchemy ORM}, and Jinja2 with a responsive dark-themed UI.
-                \item Integrated \textbf{Pygments} syntax highlighting for 13+ languages, clipboard support, automatic language detection, and configurable expiration.
-                \item Implemented \textbf{multi-file upload} with automatic organization, ZIP compression, time-based expiration, and cleanup mechanisms.
-                \item Added shareable paste routes, file previews, and cleanup workflows to support short-lived text and file exchange.
+                \item Built a \textbf{4x plant leaf super-resolution} pipeline using an \textbf{ESRGAN-lite} conditional GAN with RRDB blocks and residual prediction over bicubic upsampling.
+                \item Trained with \textbf{Charbonnier}, VGG perceptual, FFT, and adversarial losses using AMP, EMA checkpointing, early stopping, and 8-way test-time augmentation.
+                \item Improved validation MAE from \textbf{18.20} bicubic baseline to \textbf{16.89}; generated real model outputs and deployed a visual comparison frontend.
+                \item Packaged the notebook into reusable training/inference scripts, dataset preparation tooling, Docker setup, and CI model-forward smoke tests.
             \end{highlights}
         \end{onecolentry}
 
@@ -288,7 +288,7 @@
         \vspace{0.06 cm}
 
         \begin{onecolentry}
-            \textbf{Data \& ML:} Pandas, NumPy, scikit-learn, Matplotlib, Seaborn, BeautifulSoup
+            \textbf{Data \& ML:} PyTorch, TorchVision, Pandas, NumPy, scikit-learn, Matplotlib, Seaborn, BeautifulSoup
         \end{onecolentry}
 
         \vspace{0.06 cm}
