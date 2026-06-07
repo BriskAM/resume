@@ -66,6 +66,16 @@ jobs:
             kpsewhich "$package"
           done
 
+      - name: Clone private archive repository
+        env:
+          ARCHIVE_PAT: ${{ secrets.ARCHIVE_PAT }}
+        run: |
+          git clone https://x-access-token:${{ secrets.ARCHIVE_PAT }}@github.com/BriskAM/resume-archive.git archive-repo
+
+      - name: Copy private resume templates
+        run: |
+          cp archive-repo/resume-*.tex . || true
+
       - name: Inject contact secrets
         env:
           RESUME_PHONE_LINK: ${{ secrets.RESUME_PHONE_LINK }}
@@ -98,16 +108,11 @@ jobs:
           done
 
       - name: Archive resumes to private repository
-        env:
-          ARCHIVE_PAT: ${{ secrets.ARCHIVE_PAT }}
         run: |
-          # 1. Clone private archive repository
-          git clone https://x-access-token:${{ secrets.ARCHIVE_PAT }}@github.com/BriskAM/resume-archive.git archive-repo
-          
-          # 2. Prepare directories in archive repo
+          # 1. Prepare directories in archive repo
           mkdir -p archive-repo/versions
           
-          # 3. Check if main resume content changed compared to the latest version in the archive
+          # 2. Check if main resume content changed compared to the latest version in the archive
           should_archive=1
           latest_version="$(find archive-repo/versions -maxdepth 1 -name '*.pdf' -type f | sort | tail -n 1 || true)"
           
@@ -126,10 +131,10 @@ jobs:
             cp akshit_mehta_resume.pdf "archive-repo/versions/akshit-mehta-resume-${stamp}-${short_sha}.pdf"
           fi
           
-          # 4. Copy current domain-specific resumes
+          # 3. Copy current domain-specific resumes
           cp akshit_mehta_resume_*.pdf archive-repo/ || true
           
-          # 5. Commit and push to private archive repository
+          # 4. Commit and push to private archive repository
           cd archive-repo
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
