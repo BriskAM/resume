@@ -64,14 +64,36 @@ Since `resume-cisco.tex` only resides in the private `resume-archive` repository
 
 ---
 
-## Local Compilation
+## Local Compilation & Secrets Injection
 
-To compile resumes locally, ensure you have a LaTeX engine installed (like TeX Live or Tectonic), and run:
+To compile resumes locally with your actual contact details, you can use a local `.env` file which is ignored by Git.
 
-```bash
-# Compiles main resume
-./compile.sh
+### 1. Configure Local Secrets
+Create a `.env` file in the root of the repository:
 
-# Compiles Cisco resume (if copied from your private repository)
-python3 main.py resume-cisco.tex akshit_mehta_resume_cisco
+```env
+RESUME_EMAIL=akshit.mehta.work@gmail.com
+RESUME_PHONE_DISPLAY=+91 9548783003
+RESUME_PHONE_LINK=+91-9548783003
 ```
+
+### 2. Compile the Main Resume
+Ensure you have a LaTeX engine installed (like TeX Live or Tectonic).
+Run the compile script:
+```bash
+./compile.sh
+```
+This runs `main.py`, which automatically loads `.env` (if present), replaces placeholders in `resume.tex` on-the-fly, compiles it, and cleans up temporary files.
+
+### 3. Compile a Domain-Specific Resume
+For templates residing in the private repository (e.g., `resume-cisco.tex`):
+```bash
+# Synced, compiles with secrets, and cleans up
+./compile-private.sh cisco
+```
+This script will:
+1. Temporarily clone `BriskAM/resume-archive` to a local folder.
+2. Copy `resume-cisco.tex` into the workspace.
+3. Inject the `.env` secrets and compile it.
+4. Clean up the template and cloned repository.
+
