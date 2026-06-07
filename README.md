@@ -28,3 +28,7 @@ The build writes `akshit_mehta_resume.pdf` in the repository root.
 ## CI/CD
 
 GitHub Actions builds the resume PDF on every push to `master`, archives a dated PDF and any domain-specific resumes in a private archive repository, attempts a Catbox mirror upload with a 30-second timeout, and publishes a GitHub Pages site with direct download links.
+
+## Developer Guidelines
+
+For detailed technical guidelines, repository architecture, and instructions on how this public repository integrates with the private archive repository, see [agents.md](agents.md).
