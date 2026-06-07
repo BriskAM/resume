@@ -225,7 +225,6 @@
           <a class="button primary" href="akshit_mehta_resume.pdf" download>Download PDF</a>
           <a class="button" href="akshit_mehta_resume.pdf">Open PDF</a>
           <!-- CATBOX_LINK -->
-          <a class="button" href="#versions" id="history-btn">Version History</a>
           <a class="button" href="https://github.com/BriskAM/resume">Source</a>
         </div>
       </section>
@@ -241,11 +240,7 @@
             <h2>Primary links</h2>
             <p class="meta">briskam.github.io/resume · github.com/BriskAM/resume</p>
           </article>
-          <article class="card slate" id="versions">
-            <h2>Version history</h2>
-            <p>Older generated PDFs saved from resume content changes.</p>
-            <!-- VERSION_LINKS -->
-          </article>
+
         </div>
       </section>
     </main>
@@ -336,11 +331,7 @@
         requestAnimationFrame(loop);
       }
 
-      document.getElementById("history-btn").addEventListener("click", function (event) {
-        event.preventDefault();
-        const target = document.getElementById("versions");
-        if (target) target.scrollIntoView({ behavior: "smooth" });
-      });
+
 
       resize();
       window.addEventListener("resize", resize);

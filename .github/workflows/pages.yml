@@ -66,15 +66,51 @@ jobs:
             kpsewhich "$package"
           done
 
+      - name: Inject contact secrets
+        env:
+          RESUME_PHONE_LINK: ${{ secrets.RESUME_PHONE_LINK }}
+          RESUME_PHONE_DISPLAY: ${{ secrets.RESUME_PHONE_DISPLAY }}
+          RESUME_EMAIL: ${{ secrets.RESUME_EMAIL }}
+        run: |
+          python3 -c "
+          import os, glob
+          for path in glob.glob('*.tex'):
+              content = open(path).read()
+              content = content.replace('email@example.com', os.environ['RESUME_EMAIL'])
+              content = content.replace('+91-0000000000', os.environ['RESUME_PHONE_LINK'])
+              content = content.replace('+91 0000000000', os.environ['RESUME_PHONE_DISPLAY'])
+              open(path, 'w').write(content)
+          "
+
       - name: Build resume
         run: ./compile.sh
 
-      - name: Archive changed resume PDF
+      - name: Build domain-specific resumes
         run: |
-          mkdir -p versions
-          should_archive=1
-          latest_version="$(find versions -maxdepth 1 -name '*.pdf' -type f | sort | tail -n 1 || true)"
+          for f in resume-*.tex; do
+            if [ "$f" = "resume-template.tex" ]; then
+              continue
+            fi
+            domain="${f#resume-}"
+            domain="${domain%.tex}"
+            echo "Compiling domain-specific resume: $f -> akshit_mehta_resume_${domain}.pdf"
+            python3 main.py "$f" "akshit_mehta_resume_${domain}"
+          done
 
+      - name: Archive resumes to private repository
+        env:
+          ARCHIVE_PAT: ${{ secrets.ARCHIVE_PAT }}
+        run: |
+          # 1. Clone private archive repository
+          git clone https://x-access-token:${{ secrets.ARCHIVE_PAT }}@github.com/BriskAM/resume-archive.git archive-repo
+          
+          # 2. Prepare directories in archive repo
+          mkdir -p archive-repo/versions
+          
+          # 3. Check if main resume content changed compared to the latest version in the archive
+          should_archive=1
+          latest_version="$(find archive-repo/versions -maxdepth 1 -name '*.pdf' -type f | sort | tail -n 1 || true)"
+          
           if [ -n "$latest_version" ]; then
             pdftotext akshit_mehta_resume.pdf /tmp/current-resume.txt
             pdftotext "$latest_version" /tmp/latest-resume.txt
@@ -83,16 +119,26 @@ jobs:
               echo "Latest archived PDF already matches the generated resume content."
             fi
           fi
-
+          
           if [ "$should_archive" -eq 1 ]; then
             stamp="$(date -u +'%Y-%m-%d-%H%M')"
             short_sha="$(printf '%s' "$GITHUB_SHA" | cut -c1-7)"
-            cp akshit_mehta_resume.pdf "versions/akshit-mehta-resume-${stamp}-${short_sha}.pdf"
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add versions
-            git commit -m "Archive resume PDF ${stamp} [skip ci]" || true
+            cp akshit_mehta_resume.pdf "archive-repo/versions/akshit-mehta-resume-${stamp}-${short_sha}.pdf"
+          fi
+          
+          # 4. Copy current domain-specific resumes
+          cp akshit_mehta_resume_*.pdf archive-repo/ || true
+          
+          # 5. Commit and push to private archive repository
+          cd archive-repo
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          if ! git diff --cached --quiet; then
+            git commit -m "Archive resumes from commit BriskAM/resume@$GITHUB_SHA [skip ci]"
             git push
+          else
+            echo "No changes in resumes or archives to commit."
           fi
 
       - name: Upload Catbox mirror
@@ -116,36 +162,12 @@ jobs:
       - name: Prepare Pages artifact
         run: |
           mkdir -p public
-          mkdir -p public/versions
           cp akshit_mehta_resume.pdf public/akshit_mehta_resume.pdf
-          find versions -maxdepth 1 -name '*.pdf' -type f -exec cp {} public/versions/ \;
 
           python3 - <<'PY'
           from html import escape
           from pathlib import Path
 
-          def label_for(path: Path) -> str:
-              stem = path.stem.removeprefix("akshit-mehta-resume-")
-              parts = stem.split("-")
-              if len(parts) >= 5:
-                  timestamp = f"{parts[0]}-{parts[1]}-{parts[2]} {parts[3][:2]}:{parts[3][2:]} UTC"
-                  return f"{timestamp} ({parts[4]})"
-              return stem.replace("-", " ")
-
-          versions = sorted(Path("versions").glob("*.pdf"), reverse=True)
-          main_items = []
-          index_items = []
-          for version in versions[:8]:
-              name = escape(version.name)
-              label = escape(label_for(version))
-              main_items.append(f'  <li><a href="versions/{name}">{label}</a></li>')
-              index_items.append(f'  <li><a href="{name}">{label}</a></li>')
-
-          if not main_items:
-              main_items.append("  <li>No archived versions yet.</li>")
-              index_items.append("  <li>No archived versions yet.</li>")
-
-          version_links = "<ul class=\"version-list\">\n" + "\n".join(main_items) + "\n</ul>\n"
           catbox_url = "${{ steps.catbox.outputs.url }}"
           if catbox_url:
               catbox_link = f'<a class="button" href="{escape(catbox_url)}">Catbox Mirror</a>'
@@ -153,27 +175,8 @@ jobs:
               catbox_link = ""
 
           template = Path("docs/index.html").read_text()
-          html = template.replace("<!-- VERSION_LINKS -->", version_links)
-          html = html.replace("<!-- CATBOX_LINK -->", catbox_link)
+          html = template.replace("<!-- CATBOX_LINK -->", catbox_link)
           Path("public/index.html").write_text(html)
-
-          version_index = """<!doctype html>
-          <html lang="en">
-            <head>
-              <meta charset="utf-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1">
-              <title>Resume Version History</title>
-            </head>
-            <body>
-              <h1>Resume Version History</h1>
-              <ul>
-          """ + "\n".join(index_items) + """
-              </ul>
-              <p><a href="../">Back to latest resume</a></p>
-            </body>
-          </html>
-          """
-          Path("public/versions/index.html").write_text(version_index)
           PY
 
       - name: Upload Pages artifact
