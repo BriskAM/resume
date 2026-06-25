@@ -112,11 +112,15 @@
 \newenvironment{twocolentry}[2][]{
     \onecolentry
     \def\secondColumn{#2}
-    \setcolumnwidth{\fill, 6.8 cm}
-    \begin{paracol}{2}
+    \noindent
+    \begin{minipage}[t]{\linewidth-6.8cm}
+        \setlength{\parskip}{0pt}
 }{
-    \switchcolumn \raggedleft \secondColumn
-    \end{paracol}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{6.6cm}
+        \raggedleft\secondColumn
+    \end{minipage}
     \endonecolentry
 } % new environment for two column entries
 
@@ -179,50 +183,38 @@
 
     \section{Education}
 
-        \begin{twocolentry}{
-        \textit{Delhi}
+        \begin{onecolentry}
+            \textbf{Maharaja Agrasen Institute of Technology (MAIT)} \hfill \textit{Delhi}
 
-        \textit{Expected 2027}}
-            \textbf{Maharaja Agrasen Institute of Technology (MAIT)}
-
-            \textit{Guru Gobind Singh Indraprastha University (GGSIPU)}
+            \textit{Guru Gobind Singh Indraprastha University (GGSIPU)} \hfill \textit{Expected 2027}
 
             \textit{Bachelor of Technology in Information Technology, CGPA 9.33}
-        \end{twocolentry}
+        \end{onecolentry}
 
         \vspace{0.10 cm}
 
-        \begin{twocolentry}{
-        \textit{Chennai}
+        \begin{onecolentry}
+            \textbf{Indian Institute of Technology Madras} \hfill \textit{Chennai}
 
-        \textit{Expected 2027}}
-            \textbf{Indian Institute of Technology Madras}
-
-            \textit{BS in Data Science and Applications, Diploma Level, CGPA 9.05}
-        \end{twocolentry}
+            \textit{BS in Data Science and Applications, Diploma Level, CGPA 9.05} \hfill \textit{Expected 2027}
+        \end{onecolentry}
 
         \vspace{0.10 cm}
 
-        \begin{twocolentry}{
-        \textit{Meerut}
+        \begin{onecolentry}
+            \textbf{Guru Tegh Bahadur Public School} \hfill \textit{Meerut}
 
-        \textit{2023}}
-            \textbf{Guru Tegh Bahadur Public School}
-
-            \textit{Class 12th: 97\%, Class 10th: 97\%}
-        \end{twocolentry}
+            \textit{Class 12th: 97\%, Class 10th: 97\%} \hfill \textit{2023}
+        \end{onecolentry}
 
 
     \section{Work Experience}
 
-        \begin{twocolentry}{
-        \textit{Remote}
+        \begin{onecolentry}
+            \textbf{OTET Infosystems} \hfill \textit{Remote}
 
-        \textit{June -- July 2025}}
-            \textbf{OTET Infosystems}
-
-            \textit{Backend Developer Intern}
-        \end{twocolentry}
+            \textit{Backend Developer Intern} \hfill \textit{June -- July 2025}
+        \end{onecolentry}
 
         \vspace{0.02 cm}
         \begin{onecolentry}
@@ -237,70 +229,68 @@
 
     \section{Projects}
 
-        \begin{twocolentry}{
-        \textit{\footnotesize \printlink{https://tds.amehta.space}{tds.amehta.space}\\\printlink{https://github.com/23f3001694/llm-tools}{github.com/23f3001694/llm-tools}}}
-            \textbf{TDS Quiz Solver}
+        \begin{onecolentry}
+            \textbf{Cortex (RAG Codebase Companion)} \hfill \textit{\footnotesize \printlink{https://cortex.amehta.space}{cortex.amehta.space}}
 
-            \textit{FastAPI, LangGraph, Playwright, Gemini API, Groq API, Docker}
-        \end{twocolentry}
+            \textit{Vue 3, Flask, Celery, Redis, ChromaDB, gemini-embedding, Gemma} \hfill \textit{\footnotesize \printlink{https://github.com/BriskAM/cortex}{github.com/BriskAM/cortex}}
+        \end{onecolentry}
 
         \vspace{0.02 cm}
         \begin{onecolentry}
             \begin{highlights}
-                \item Built an automated \textbf{LLM-powered quiz-solving agent} using \textbf{LangGraph} with multi-model support (Gemini, Groq, OpenRouter) and automatic failover.
-                \item Implemented \textbf{sandboxed Python execution} with resource limits, isolated workspaces, and structured JSON logging for debugging.
-                \item Designed \textbf{FastAPI} endpoints for quiz solving, task status tracking, and health checks, deployed on \textbf{Hugging Face Spaces} with Docker.
-                \item Added \textbf{Playwright} browser automation to handle dynamic quiz pages and extract structured inputs for downstream LLM workflows.
+                \item Built a codebase Q\&A companion indexing repository source code (\textbf{tree-sitter} for AST-aware boundary chunking) and engineering history (pull requests, merge descriptions, and diff summaries).
+                \item Integrated asynchronous repository crawling and vector ingestion pipelines using \textbf{Celery} workers, \textbf{Redis} task queues, and persistent \textbf{ChromaDB} vector databases.
+                \item Designed robust integration test suites and API endpoints to verify file indexing status and streaming response health.
+                \item Deployed the multi-container service using \textbf{Docker Compose} for production parity and automated regression checks.
             \end{highlights}
         \end{onecolentry}
 
         \vspace{0.10 cm}
 
-        \begin{twocolentry}{
-        \textit{\footnotesize \printlink{https://briskam.github.io/leafsr}{briskam.github.io/leafsr}\\\printlink{https://github.com/BriskAM/leafsr}{github.com/BriskAM/leafsr}}}
-            \textbf{LeafSR}
+        \begin{onecolentry}
+            \textbf{LeafSR (Plant Leaf Super-Resolution)} \hfill \textit{\footnotesize \printlink{https://briskam.github.io/leafsr}{briskam.github.io/leafsr}}
 
-            \textit{PyTorch, TorchVision, ESRGAN-lite, RRDB, Docker, GitHub Actions}
-        \end{twocolentry}
+            \textit{PyTorch, TorchVision, ESRGAN-lite, RRDB Blocks, Docker, GitHub Actions} \hfill \textit{\footnotesize \printlink{https://github.com/BriskAM/leafsr}{github.com/BriskAM/leafsr}}
+        \end{onecolentry}
 
         \vspace{0.02 cm}
         \begin{onecolentry}
             \begin{highlights}
-                \item Built a \textbf{4x plant leaf super-resolution} pipeline using an \textbf{ESRGAN-lite} conditional GAN with RRDB blocks and residual prediction over bicubic upsampling.
-                \item Trained with \textbf{Charbonnier}, VGG perceptual, FFT, and adversarial losses using AMP, EMA checkpointing, early stopping, and 8-way test-time augmentation.
+                \item Developed a \textbf{4x super-resolution GAN} using an ESRGAN-lite generator with RRDB blocks and residual prediction over a bicubic baseline.
+                \item Optimized training via combined Charbonnier, VGG perceptual, FFT spectral, and adversarial losses using AMP, EMA checkpointing, and 8-way test-time augmentation.
                 \item Improved validation MAE from \textbf{18.20} bicubic baseline to \textbf{16.89}; generated real model outputs and deployed a visual comparison frontend.
-                \item Packaged the notebook into reusable training/inference scripts, dataset preparation tooling, Docker setup, and CI model-forward smoke tests.
+                \item Packaged the training/inference code with automated smoke tests in a GitHub Actions CI pipeline and Docker container for test reliability.
             \end{highlights}
         \end{onecolentry}
 
     \section{Technical Skills}
 
         \begin{onecolentry}
-            \textbf{Languages:} Python, Java, SQL, Bash, JavaScript, HTML/CSS
+            \textbf{Languages:} Python, Java, SQL, JavaScript, HTML/CSS, Bash
         \end{onecolentry}
 
         \vspace{0.06 cm}
 
         \begin{onecolentry}
-            \textbf{Backend:} FastAPI, Flask, Django REST Framework, REST APIs, SQLAlchemy, Pytest
+            \textbf{AI \& Machine Learning:} PyTorch, TensorFlow (basic), scikit-learn, torchvision, GANs, CNNs, LLMs, Prompt Engineering
         \end{onecolentry}
 
         \vspace{0.06 cm}
 
         \begin{onecolentry}
-            \textbf{Data \& ML:} PyTorch, TorchVision, Pandas, NumPy, scikit-learn, Matplotlib, Seaborn, BeautifulSoup
+            \textbf{Backend \& Libraries:} FastAPI, Flask, Django REST Framework, REST APIs, Celery, Redis, SQLAlchemy, Pytest, Pandas, NumPy
         \end{onecolentry}
 
         \vspace{0.06 cm}
 
         \begin{onecolentry}
-            \textbf{Tools:} Linux, Git, GitHub Actions, Docker, Postman, Jupyter, Kaggle, Hugging Face Spaces
+            \textbf{Cloud \& DevOps:} AWS (EC2, S3), Docker, CI/CD (GitHub Actions), Linux, Git, Postman
         \end{onecolentry}
 
         \vspace{0.06 cm}
 
         \begin{onecolentry}
-            \textbf{Databases:} MySQL, SQLite, MariaDB, MongoDB
+            \textbf{Databases \& Vector Search:} PostgreSQL, MySQL, SQLite, MongoDB, ChromaDB (Vector DB)
         \end{onecolentry}
 
 
