@@ -3,8 +3,8 @@
 % Packages:
 \usepackage[
     ignoreheadfoot, % set margins without considering header and footer
-    top=0.5 cm, % seperation between body and page edge from the top
-    bottom=0.5 cm, % seperation between body and page edge from the bottom
+    top=0.3 cm, % seperation between body and page edge from the top
+    bottom=0.3 cm, % seperation between body and page edge from the bottom
     left=0.7 cm, % seperation between body and page edge from the left
     right=0.7 cm, % seperation between body and page edge from the right
     footskip=1.0 cm, % seperation between body and footer
@@ -67,19 +67,20 @@
     -1pt
 }{
     % top space:
-    0.10 cm
+    0.05 cm
 }{
     % bottom space:
-    0.08 cm
+    0.03 cm
 } % section title spacing
 
 \renewcommand\labelitemi{$\circ$} % custom bullet points
 \newenvironment{highlights}{
+    \small
     \begin{itemize}[
-        topsep=0.04 cm,
-        parsep=0.04 cm,
+        topsep=0.01 cm,
+        parsep=0.01 cm,
         partopsep=0pt,
-        itemsep=0.04 cm,
+        itemsep=0.01 cm,
         leftmargin=0.4 cm + 10pt
     ]
 }{
@@ -87,11 +88,12 @@
 } % new environment for highlights
 
 \newenvironment{highlightsforbulletentries}{
+    \small
     \begin{itemize}[
-        topsep=0.04 cm,
-        parsep=0.04 cm,
+        topsep=0.01 cm,
+        parsep=0.01 cm,
         partopsep=0pt,
-        itemsep=0.04 cm,
+        itemsep=0.01 cm,
         leftmargin=10pt
     ]
 }{
@@ -152,21 +154,17 @@
     \begin{header}
         \textbf{\fontsize{20 pt}{20 pt}\selectfont Akshit Mehta}
 
-        \vspace{0.15 cm}
+        \vspace{0.08 cm}
 
         \small
-        \mbox{Delhi, India}%
-        \kern 0.15 cm%
-        \AND%
-        \kern 0.15 cm%
         \mbox{\hrefWithoutArrow{tel:+91-0000000000}{+91 0000000000}}%
         \kern 0.15 cm%
         \AND%
         \kern 0.15 cm%
         \mbox{\printemaillink{email@example.com}}%
-
-        \vspace{0.05 cm}
-        
+        \kern 0.15 cm%
+        \AND%
+        \kern 0.15 cm%
         \mbox{Portfolio: \printlink{https://amehta.space}{amehta.space}}%
         \kern 0.15 cm%
         \AND%
@@ -191,7 +189,7 @@
             \textit{Bachelor of Technology in Information Technology, CGPA 9.33}
         \end{onecolentry}
 
-        \vspace{0.10 cm}
+        \vspace{0.03 cm}
 
         \begin{onecolentry}
             \textbf{Indian Institute of Technology Madras} \hfill \textit{Chennai}
@@ -199,7 +197,7 @@
             \textit{BS in Data Science and Applications, Diploma Level, CGPA 9.05} \hfill \textit{Expected 2027}
         \end{onecolentry}
 
-        \vspace{0.10 cm}
+        \vspace{0.03 cm}
 
         \begin{onecolentry}
             \textbf{Guru Tegh Bahadur Public School} \hfill \textit{Meerut}
@@ -216,7 +214,7 @@
             \textit{Backend Developer Intern} \hfill \textit{June -- July 2025}
         \end{onecolentry}
 
-        \vspace{0.02 cm}
+        \vspace{0.01 cm}
         \begin{onecolentry}
             \begin{highlights}
                 \item Assisted backend migration work from \textbf{Laravel to Django} by reviewing existing routes, models, and API behavior.
@@ -235,7 +233,8 @@
             \textit{Vue 3, Flask, Celery, Redis, ChromaDB, gemini-embedding, Gemma} \hfill \textit{\footnotesize \printlink{https://github.com/BriskAM/cortex}{github.com/BriskAM/cortex}}
         \end{onecolentry}
 
-        \vspace{0.02 cm}
+        \vspace{0.01 cm}
+
         \begin{onecolentry}
             \begin{highlights}
                 \item Built a codebase Q\&A companion indexing repository source code (\textbf{tree-sitter} for AST-aware boundary chunking) and engineering history (pull requests, merge descriptions, and diff summaries).
@@ -245,7 +244,7 @@
             \end{highlights}
         \end{onecolentry}
 
-        \vspace{0.10 cm}
+        \vspace{0.03 cm}
 
         \begin{onecolentry}
             \textbf{LeafSR (Plant Leaf Super-Resolution)} \hfill \textit{\footnotesize \printlink{https://briskam.github.io/leafsr}{briskam.github.io/leafsr}}
@@ -263,31 +262,48 @@
             \end{highlights}
         \end{onecolentry}
 
+        \vspace{0.03 cm}
+
+        \begin{onecolentry}
+            \textbf{BehaveGuard (Behavioral Biometrics)} \hfill \textit{\footnotesize \printlink{https://github.com/BriskAM/behave-guard}{github.com/BriskAM/behave-guard}}
+
+            \textit{FastAPI, PyTorch, Next.js, scikit-learn, LSTM, Temporal Convolutional Networks (TCN)}
+        \end{onecolentry}
+
+        \vspace{0.01 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Built a continuous authentication system fusing statistical models (\textbf{One-Class SVM}) and deep learning sequence models (\textbf{LSTM} and \textbf{TCN Autoencoders}) over 50-key typing windows.
+                \item Extracted 23-dimensional keystroke timing features normalized by dwell mean for speed-scale invariance, and 7-dimensional mouse kinematic features.
+                \item Engineered a late-fusion scoring pipeline (\textbf{50\% keyboard / 50\% mouse}) combining passive track metrics and active tasks to perform robust real-time biometric verification.
+            \end{highlights}
+        \end{onecolentry}
+
     \section{Technical Skills}
 
         \begin{onecolentry}
             \textbf{Languages:} Python, Java, SQL, JavaScript, HTML/CSS, Bash
         \end{onecolentry}
 
-        \vspace{0.06 cm}
+        \vspace{0.02 cm}
 
         \begin{onecolentry}
             \textbf{AI \& Machine Learning:} PyTorch, TensorFlow (basic), scikit-learn, torchvision, GANs, CNNs, LLMs, Prompt Engineering
         \end{onecolentry}
 
-        \vspace{0.06 cm}
+        \vspace{0.02 cm}
 
         \begin{onecolentry}
             \textbf{Backend \& Libraries:} FastAPI, Flask, Django REST Framework, REST APIs, Celery, Redis, SQLAlchemy, Pytest, Pandas, NumPy
         \end{onecolentry}
 
-        \vspace{0.06 cm}
+        \vspace{0.02 cm}
 
         \begin{onecolentry}
             \textbf{Cloud \& DevOps:} AWS (EC2, S3), Docker, CI/CD (GitHub Actions), Linux, Git, Postman
         \end{onecolentry}
 
-        \vspace{0.06 cm}
+        \vspace{0.02 cm}
 
         \begin{onecolentry}
             \textbf{Databases \& Vector Search:} PostgreSQL, MySQL, SQLite, MongoDB, ChromaDB (Vector DB)
