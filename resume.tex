@@ -70,7 +70,7 @@
     0.09 cm
 }{
     % bottom space:
-    0.05 cm
+    0.08 cm
 } % section title spacing
 
 \renewcommand\labelitemi{$\circ$} % custom bullet points
@@ -217,10 +217,9 @@
         \vspace{0.02 cm}
         \begin{onecolentry}
             \begin{highlights}
-                \item Assisted backend migration from \textbf{Laravel to Django} by analyzing routes, data models, API behavior, and compatibility risks.
-                \item Built and updated \textbf{REST API} endpoints with \textbf{Django REST Framework} to support frontend feature integration.
-                \item Worked on models, serializers, database queries, authentication flows, and response contracts while preserving existing workflows.
-                \item Debugged service-layer logic and API response issues using structured checks and frontend integration feedback.
+                \item Mapped SKS Connect's \textbf{Laravel} routes, controllers, jobs, Eloquent models, and request flows to \textbf{Django/DRF} migration equivalents.
+                \item Authored migration notes for OTP/admin login, Firebase, Razorpay, push notifications, sessions, and password-reset risk areas.
+                \item Prototyped a DRF scaffold with user models, serializers/viewsets, JWT auth patterns, and Faker-backed data-migration tests.
             \end{highlights}
         \end{onecolentry}
 
@@ -237,10 +236,10 @@
 
         \begin{onecolentry}
             \begin{highlights}
-                \item Built a repository Q\&A companion that indexes source code and engineering history, including pull requests, merge descriptions, and diff summaries.
+                \item Built a deployed RAG developer tool that indexes GitHub repositories, source code, pull requests, merge notes, and diff summaries for natural-language codebase Q\&A.
                 \item Engineered asynchronous ingestion with \textbf{Celery}, \textbf{Redis}, and \textbf{ChromaDB}; used \textbf{tree-sitter} for AST-aware class and method boundary chunking.
-                \item Implemented \textbf{Server-Sent Events} streaming chat APIs, GitHub repository routing, JWT auth, end-to-end tests, and \textbf{Docker Compose} deployment.
-                \item Designed indexing status APIs and regression tests to verify repository ingestion, file coverage, and streaming response health.
+                \item Implemented \textbf{Server-Sent Events} streaming APIs, reranking, and retry backoff for Gemini/Gemma queries while handling HTTP 429 rate limits.
+                \item Reduced worker RAM usage from \textbf{500MB+} to \textbf{under 150MB} for a 512MB VPS and accelerated CI image builds by \textbf{6.3x}.
             \end{highlights}
         \end{onecolentry}
 
@@ -257,7 +256,7 @@
             \begin{highlights}
                 \item Developed a \textbf{4x plant leaf super-resolution} pipeline using an ESRGAN-lite conditional GAN with RRDB blocks and residual prediction over bicubic upsampling.
                 \item Optimized PyTorch training with Charbonnier, VGG perceptual, FFT spectral, residual, and adversarial losses using AMP and EMA checkpointing.
-                \item Improved validation MAE from \textbf{18.20} bicubic baseline to \textbf{16.89}; added 8-way TTA, Docker packaging, and \textbf{GitHub Actions} smoke tests.
+                \item Improved validation MAE from \textbf{18.20} bicubic baseline to \textbf{16.89}, a \textbf{7.2\%} gain; added 8-way TTA and \textbf{GitHub Actions} smoke tests.
                 \item Built reusable data preparation, inference, and visual comparison scripts for reproducible model evaluation.
             \end{highlights}
         \end{onecolentry}
@@ -265,17 +264,17 @@
         \vspace{0.04 cm}
 
         \begin{onecolentry}
-            \textbf{BehaveGuard (Behavioral Biometrics)} \hfill \textit{\footnotesize \printlink{https://github.com/BriskAM/behave-guard}{github.com/BriskAM/behave-guard}}
+            \textbf{BehaveGuard (Behavioral Biometrics)} \hfill \textit{\footnotesize \printlink{https://www.kaggle.com/code/shreyanshakshit/behave-guard}{kaggle.com/code/shreyanshakshit/behave-guard}}
 
-            \textit{FastAPI, PyTorch, Next.js, scikit-learn, LSTM, Temporal Convolutional Networks (TCN)}
+            \textit{FastAPI, PyTorch, Next.js, scikit-learn, LSTM, Temporal Convolutional Networks (TCN)} \hfill \textit{\footnotesize \printlink{https://github.com/BriskAM/behave-guard}{github.com/BriskAM/behave-guard}}
         \end{onecolentry}
 
         \vspace{0.02 cm}
         \begin{onecolentry}
             \begin{highlights}
-                \item Built a continuous authentication system fusing \textbf{One-Class SVM}, \textbf{LSTM Autoencoder}, and \textbf{TCN Autoencoder} models for behavioral anomaly detection.
+                \item Built a continuous authentication system fusing \textbf{One-Class SVM}, \textbf{LSTM Autoencoder}, and \textbf{TCN Autoencoder} models, achieving \textbf{91\%--93\%} genuine verification and zero false acceptances in impostor testing.
                 \item Extracted 23-dimensional keystroke timing features and 7-dimensional mouse kinematic features for speed-scale invariant biometric verification.
-                \item Engineered score fusion across keyboard and mouse signals and developed a \textbf{FastAPI} backend with a \textbf{Next.js} testing sandbox.
+                \item Engineered score fusion across keyboard and mouse signals with \textbf{under 50 ms} inference per sequence window and built a \textbf{FastAPI}/\textbf{Next.js} testing sandbox.
                 \item Supported enrollment, verification, identification, and live authentication workflows with SQLite-backed profile storage.
             \end{highlights}
         \end{onecolentry}
@@ -289,13 +288,13 @@
         \vspace{0.02 cm}
 
         \begin{onecolentry}
-            \textbf{AI \& Machine Learning:} PyTorch, TensorFlow (basic), scikit-learn, torchvision, GANs, CNNs, LSTMs, TCNs, RAG, LLMs, Embeddings
+            \textbf{Backend \& Libraries:} FastAPI, Flask, Django REST Framework, REST APIs, Celery, Redis, SQLAlchemy, Pytest, Pandas, NumPy
         \end{onecolentry}
 
         \vspace{0.02 cm}
 
         \begin{onecolentry}
-            \textbf{Backend \& Libraries:} FastAPI, Flask, Django REST Framework, REST APIs, Celery, Redis, SQLAlchemy, Pytest, Pandas, NumPy
+            \textbf{AI \& Machine Learning:} PyTorch, scikit-learn, torchvision, GANs, CNNs, LSTMs, TCNs, RAG, LLMs, Embeddings, PCA
         \end{onecolentry}
 
         \vspace{0.02 cm}
@@ -317,7 +316,7 @@
             \begin{highlightsforbulletentries}
                 \item \textbf{Diploma in Programming} -- IIT Madras BS Degree Programme; coursework in Python, Java, DSA, DBMS, and software tools.
                 \item \textbf{JetBrains Academy}: Python Developer (265 topics, 10 projects) and SQL for Data Analysis certifications.
-                \item \textbf{Open Source}: 100+ GitHub stars across public repositories; contributed to Hacktoberfest repositories.
+                \item \textbf{Open Source}: Maintained public IIT Madras academic tooling repositories with 100+ combined GitHub stars; contributed to Hacktoberfest repositories.
                 \item \textbf{ML Competitions}: Top-5 in Movie Review Sentiment Classification; top 6--7\% in plant super-resolution and hotel cancellation prediction.
                 \item \textbf{Leadership \& Awards}: DevOps Head -- GDG MAIT; IIT Madras Paradox'24 Python finalist; 2nd place Redrob Hackathon, INR 20,000 prize.
                 \item \textbf{Community}: Member -- IOSD MAIT; active in developer tooling, backend engineering, and applied ML projects.
