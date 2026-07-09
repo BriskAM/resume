@@ -67,20 +67,20 @@
     -1pt
 }{
     % top space:
-    0.05 cm
+    0.09 cm
 }{
     % bottom space:
-    0.03 cm
+    0.05 cm
 } % section title spacing
 
 \renewcommand\labelitemi{$\circ$} % custom bullet points
 \newenvironment{highlights}{
     \small
     \begin{itemize}[
-        topsep=0.01 cm,
-        parsep=0.01 cm,
+        topsep=0.02 cm,
+        parsep=0.015 cm,
         partopsep=0pt,
-        itemsep=0.01 cm,
+        itemsep=0.015 cm,
         leftmargin=0.4 cm + 10pt
     ]
 }{
@@ -90,10 +90,10 @@
 \newenvironment{highlightsforbulletentries}{
     \small
     \begin{itemize}[
-        topsep=0.01 cm,
-        parsep=0.01 cm,
+        topsep=0.02 cm,
+        parsep=0.015 cm,
         partopsep=0pt,
-        itemsep=0.01 cm,
+        itemsep=0.015 cm,
         leftmargin=10pt
     ]
 }{
@@ -154,7 +154,7 @@
     \begin{header}
         \textbf{\fontsize{20 pt}{20 pt}\selectfont Akshit Mehta}
 
-        \vspace{0.08 cm}
+        \vspace{0.10 cm}
 
         \small
         \mbox{\hrefWithoutArrow{tel:+91-0000000000}{+91 0000000000}}%
@@ -186,18 +186,18 @@
 
             \textit{Guru Gobind Singh Indraprastha University (GGSIPU)} \hfill \textit{Expected 2027}
 
-            \textit{Bachelor of Technology in Information Technology, CGPA 9.33}
+            \textit{Bachelor of Technology in Information Technology, CGPA 9.30}
         \end{onecolentry}
 
-        \vspace{0.03 cm}
+        \vspace{0.04 cm}
 
         \begin{onecolentry}
             \textbf{Indian Institute of Technology Madras} \hfill \textit{Chennai}
 
-            \textit{BS in Data Science and Applications, Diploma Level, CGPA 9.05} \hfill \textit{Expected 2027}
+            \textit{BS in Data Science and Applications, Diploma Level, CGPA 8.93} \hfill \textit{Expected 2027}
         \end{onecolentry}
 
-        \vspace{0.03 cm}
+        \vspace{0.04 cm}
 
         \begin{onecolentry}
             \textbf{Guru Tegh Bahadur Public School} \hfill \textit{Meerut}
@@ -214,13 +214,13 @@
             \textit{Backend Developer Intern} \hfill \textit{June -- July 2025}
         \end{onecolentry}
 
-        \vspace{0.01 cm}
+        \vspace{0.02 cm}
         \begin{onecolentry}
             \begin{highlights}
-                \item Assisted backend migration work from \textbf{Laravel to Django} by reviewing existing routes, models, and API behavior.
-                \item Built and updated \textbf{REST API} endpoints with \textbf{Django REST Framework} for frontend integration.
-                \item Worked on database models, serializers, and query updates while maintaining compatibility with existing workflows.
-                \item Debugged backend issues across authentication, service-layer logic, and API responses.
+                \item Assisted backend migration from \textbf{Laravel to Django} by analyzing routes, data models, API behavior, and compatibility risks.
+                \item Built and updated \textbf{REST API} endpoints with \textbf{Django REST Framework} to support frontend feature integration.
+                \item Worked on models, serializers, database queries, authentication flows, and response contracts while preserving existing workflows.
+                \item Debugged service-layer logic and API response issues using structured checks and frontend integration feedback.
             \end{highlights}
         \end{onecolentry}
 
@@ -233,18 +233,18 @@
             \textit{Vue 3, Flask, Celery, Redis, ChromaDB, gemini-embedding, Gemma} \hfill \textit{\footnotesize \printlink{https://github.com/BriskAM/cortex}{github.com/BriskAM/cortex}}
         \end{onecolentry}
 
-        \vspace{0.01 cm}
+        \vspace{0.02 cm}
 
         \begin{onecolentry}
             \begin{highlights}
-                \item Built a codebase Q\&A companion indexing repository source code (\textbf{tree-sitter} for AST-aware boundary chunking) and engineering history (pull requests, merge descriptions, and diff summaries).
-                \item Integrated asynchronous repository crawling and vector ingestion pipelines using \textbf{Celery} workers, \textbf{Redis} task queues, and persistent \textbf{ChromaDB} vector databases.
-                \item Designed robust integration test suites and API endpoints to verify file indexing status and streaming response health.
-                \item Deployed the multi-container service using \textbf{Docker Compose} for production parity and automated regression checks.
+                \item Built a repository Q\&A companion that indexes source code and engineering history, including pull requests, merge descriptions, and diff summaries.
+                \item Engineered asynchronous ingestion with \textbf{Celery}, \textbf{Redis}, and \textbf{ChromaDB}; used \textbf{tree-sitter} for AST-aware class and method boundary chunking.
+                \item Implemented \textbf{Server-Sent Events} streaming chat APIs, GitHub repository routing, JWT auth, end-to-end tests, and \textbf{Docker Compose} deployment.
+                \item Designed indexing status APIs and regression tests to verify repository ingestion, file coverage, and streaming response health.
             \end{highlights}
         \end{onecolentry}
 
-        \vspace{0.03 cm}
+        \vspace{0.04 cm}
 
         \begin{onecolentry}
             \textbf{LeafSR (Plant Leaf Super-Resolution)} \hfill \textit{\footnotesize \printlink{https://briskam.github.io/leafsr}{briskam.github.io/leafsr}}
@@ -252,17 +252,17 @@
             \textit{PyTorch, TorchVision, ESRGAN-lite, RRDB Blocks, Docker, GitHub Actions} \hfill \textit{\footnotesize \printlink{https://github.com/BriskAM/leafsr}{github.com/BriskAM/leafsr}}
         \end{onecolentry}
 
-        \vspace{0.02 cm}
+        \vspace{0.03 cm}
         \begin{onecolentry}
             \begin{highlights}
-                \item Developed a \textbf{4x super-resolution GAN} using an ESRGAN-lite generator with RRDB blocks and residual prediction over a bicubic baseline.
-                \item Optimized training via combined Charbonnier, VGG perceptual, FFT spectral, and adversarial losses using AMP, EMA checkpointing, and 8-way test-time augmentation.
-                \item Improved validation MAE from \textbf{18.20} bicubic baseline to \textbf{16.89}; generated real model outputs and deployed a visual comparison frontend.
-                \item Packaged the training/inference code with automated smoke tests in a GitHub Actions CI pipeline and Docker container for test reliability.
+                \item Developed a \textbf{4x plant leaf super-resolution} pipeline using an ESRGAN-lite conditional GAN with RRDB blocks and residual prediction over bicubic upsampling.
+                \item Optimized PyTorch training with Charbonnier, VGG perceptual, FFT spectral, residual, and adversarial losses using AMP and EMA checkpointing.
+                \item Improved validation MAE from \textbf{18.20} bicubic baseline to \textbf{16.89}; added 8-way TTA, Docker packaging, and \textbf{GitHub Actions} smoke tests.
+                \item Built reusable data preparation, inference, and visual comparison scripts for reproducible model evaluation.
             \end{highlights}
         \end{onecolentry}
 
-        \vspace{0.03 cm}
+        \vspace{0.04 cm}
 
         \begin{onecolentry}
             \textbf{BehaveGuard (Behavioral Biometrics)} \hfill \textit{\footnotesize \printlink{https://github.com/BriskAM/behave-guard}{github.com/BriskAM/behave-guard}}
@@ -270,25 +270,26 @@
             \textit{FastAPI, PyTorch, Next.js, scikit-learn, LSTM, Temporal Convolutional Networks (TCN)}
         \end{onecolentry}
 
-        \vspace{0.01 cm}
+        \vspace{0.02 cm}
         \begin{onecolentry}
             \begin{highlights}
-                \item Built a continuous authentication system fusing statistical models (\textbf{One-Class SVM}) and deep learning sequence models (\textbf{LSTM} and \textbf{TCN Autoencoders}) over 50-key typing windows.
-                \item Extracted 23-dimensional keystroke timing features normalized by dwell mean for speed-scale invariance, and 7-dimensional mouse kinematic features.
-                \item Engineered a late-fusion scoring pipeline (\textbf{50\% keyboard / 50\% mouse}) combining passive track metrics and active tasks to perform robust real-time biometric verification.
+                \item Built a continuous authentication system fusing \textbf{One-Class SVM}, \textbf{LSTM Autoencoder}, and \textbf{TCN Autoencoder} models for behavioral anomaly detection.
+                \item Extracted 23-dimensional keystroke timing features and 7-dimensional mouse kinematic features for speed-scale invariant biometric verification.
+                \item Engineered score fusion across keyboard and mouse signals and developed a \textbf{FastAPI} backend with a \textbf{Next.js} testing sandbox.
+                \item Supported enrollment, verification, identification, and live authentication workflows with SQLite-backed profile storage.
             \end{highlights}
         \end{onecolentry}
 
     \section{Technical Skills}
 
         \begin{onecolentry}
-            \textbf{Languages:} Python, Java, SQL, JavaScript, HTML/CSS, Bash
+            \textbf{Languages:} Python, Java, SQL, TypeScript, JavaScript, HTML/CSS, Bash
         \end{onecolentry}
 
         \vspace{0.02 cm}
 
         \begin{onecolentry}
-            \textbf{AI \& Machine Learning:} PyTorch, TensorFlow (basic), scikit-learn, torchvision, GANs, CNNs, LLMs, Prompt Engineering
+            \textbf{AI \& Machine Learning:} PyTorch, TensorFlow (basic), scikit-learn, torchvision, GANs, CNNs, LSTMs, TCNs, RAG, LLMs, Embeddings
         \end{onecolentry}
 
         \vspace{0.02 cm}
@@ -300,13 +301,13 @@
         \vspace{0.02 cm}
 
         \begin{onecolentry}
-            \textbf{Cloud \& DevOps:} AWS (EC2, S3), Docker, CI/CD (GitHub Actions), Linux, Git, Postman
+            \textbf{Cloud \& DevOps:} AWS (EC2, S3), Docker, Docker Compose, CI/CD (GitHub Actions), Linux, Git, Postman, Nginx
         \end{onecolentry}
 
         \vspace{0.02 cm}
 
         \begin{onecolentry}
-            \textbf{Databases \& Vector Search:} PostgreSQL, MySQL, SQLite, MongoDB, ChromaDB (Vector DB)
+            \textbf{Databases \& Vector Search:} PostgreSQL, MySQL, SQLite, MongoDB, ChromaDB, Vector Search
         \end{onecolentry}
 
 
@@ -314,14 +315,12 @@
 
         \begin{onecolentry}
             \begin{highlightsforbulletentries}
-                \item \textbf{Diploma in Programming} -- IIT Madras BS Degree Programme; covered Python, Java, DSA, databases, and software development tools.
-                \item \textbf{Python Developer} -- JetBrains Academy; completed 265 topics and built 10 projects across OOP, file I/O, and Flask.
-                \item \textbf{SQL for Data Analysis} -- JetBrains Academy; practiced joins, aggregation, subqueries, and analysis-oriented querying.
-                \item \textbf{Open Source}: 90+ GitHub stars across public repos; contributed to Hacktoberfest repositories.
-                \item \textbf{ML Competitions}: Top-5 finish in Movie Review Sentiment Classification; top 6--7\% finishes in plant super-resolution, hotel cancellation prediction, and comment category prediction challenges.
-                \item Reached the final round of Python Coding Challenge 3.0 at IIT Madras Paradox'24.
-                \item Secured 2nd place in the McKinley Rice (Redrob) Korean Company Hackathon at MAIT, winning a cash prize of INR 20,000.
-                \item \textbf{DevOps Head} -- Google Developers Group MAIT; \textbf{Member} -- IOSD MAIT.
+                \item \textbf{Diploma in Programming} -- IIT Madras BS Degree Programme; coursework in Python, Java, DSA, DBMS, and software tools.
+                \item \textbf{JetBrains Academy}: Python Developer (265 topics, 10 projects) and SQL for Data Analysis certifications.
+                \item \textbf{Open Source}: 100+ GitHub stars across public repositories; contributed to Hacktoberfest repositories.
+                \item \textbf{ML Competitions}: Top-5 in Movie Review Sentiment Classification; top 6--7\% in plant super-resolution and hotel cancellation prediction.
+                \item \textbf{Leadership \& Awards}: DevOps Head -- GDG MAIT; IIT Madras Paradox'24 Python finalist; 2nd place Redrob Hackathon, INR 20,000 prize.
+                \item \textbf{Community}: Member -- IOSD MAIT; active in developer tooling, backend engineering, and applied ML projects.
             \end{highlightsforbulletentries}
         \end{onecolentry}
 
