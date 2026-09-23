@@ -67,12 +67,22 @@ jobs:
           done
 
       - name: Clone private archive repository
+        id: archive
         env:
           ARCHIVE_PAT: ${{ secrets.ARCHIVE_PAT }}
         run: |
-          git clone https://x-access-token:${{ secrets.ARCHIVE_PAT }}@github.com/BriskAM/resume-archive.git archive-repo
+          if [ -z "$ARCHIVE_PAT" ]; then
+            echo "::warning::ARCHIVE_PAT is unavailable; publishing the public resume without archive access."
+            echo "available=false" >> "$GITHUB_OUTPUT"
+          elif git clone "https://x-access-token:${ARCHIVE_PAT}@github.com/BriskAM/resume-archive.git" archive-repo; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::warning::Private archive access failed; publishing the public resume without archive access."
+            echo "available=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Copy private resume templates
+        if: steps.archive.outputs.available == 'true'
         run: |
           cp archive-repo/resume-*.tex . || true
 
@@ -108,6 +118,8 @@ jobs:
           done
 
       - name: Archive resumes to private repository
+        if: steps.archive.outputs.available == 'true'
+        continue-on-error: true
         run: |
           # 1. Prepare directories in archive repo
           mkdir -p archive-repo/versions
