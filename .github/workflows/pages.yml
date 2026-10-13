@@ -86,21 +86,12 @@ jobs:
         run: |
           cp archive-repo/resume-*.tex . || true
 
-      - name: Inject contact secrets
+      - name: Inject contact details (public resume is built without a phone number)
         env:
           RESUME_PHONE_LINK: ${{ secrets.RESUME_PHONE_LINK }}
           RESUME_PHONE_DISPLAY: ${{ secrets.RESUME_PHONE_DISPLAY }}
           RESUME_EMAIL: ${{ secrets.RESUME_EMAIL }}
-        run: |
-          python3 -c "
-          import os, glob
-          for path in glob.glob('*.tex'):
-              content = open(path).read()
-              content = content.replace('email@example.com', os.environ['RESUME_EMAIL'])
-              content = content.replace('+91-0000000000', os.environ['RESUME_PHONE_LINK'])
-              content = content.replace('+91 0000000000', os.environ['RESUME_PHONE_DISPLAY'])
-              open(path, 'w').write(content)
-          "
+        run: python3 inject-contact.py
 
       - name: Build resume
         run: ./compile.sh
