@@ -59,6 +59,7 @@
 \tolerance=1
 \emergencystretch=\maxdimen
 \sloppy % avoid overfull boxes without hyphenation
+\linespread{0.97} % keep the compact resume within one page after the new role
 
 \titleformat{\section}{\needspace{1\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
 
@@ -67,10 +68,10 @@
     -1pt
 }{
     % top space:
-    0.09 cm
+    0.04 cm
 }{
     % bottom space:
-    0.08 cm
+    0.04 cm
 } % section title spacing
 
 \renewcommand\labelitemi{$\circ$} % custom bullet points
@@ -211,6 +212,21 @@
     \section{Work Experience}
 
         \begin{onecolentry}
+            \textbf{Stellantis Technology Centre India Pvt. Ltd.} \hfill \textit{India}
+
+            \textit{Software Engineering Intern} \hfill \textit{October 2026 -- Present}
+        \end{onecolentry}
+
+        \vspace{0.02 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Working on \textbf{software virtualization} using \textbf{QEMU} and related tooling.
+            \end{highlights}
+        \end{onecolentry}
+
+        \vspace{0.04 cm}
+
+        \begin{onecolentry}
             \textbf{OTET Infosystems} \hfill \textit{Remote}
 
             \textit{Backend Developer Intern} \hfill \textit{June -- July 2025}
@@ -284,7 +300,7 @@
     \section{Technical Skills}
 
         \begin{onecolentry}
-            \textbf{Languages:} Python, Java, SQL, TypeScript, JavaScript, HTML/CSS, Bash
+            \textbf{Languages:} Python, Java, Go, SQL, TypeScript, JavaScript, HTML/CSS, Bash
         \end{onecolentry}
 
         \vspace{0.02 cm}
@@ -302,7 +318,7 @@
         \vspace{0.02 cm}
 
         \begin{onecolentry}
-            \textbf{Cloud \& DevOps:} AWS (EC2, S3), Docker, Docker Compose, CI/CD (GitHub Actions), Linux, Git, Postman, Nginx
+            \textbf{Cloud \& DevOps:} AWS (EC2, S3), Docker, Docker Compose, CI/CD (GitHub Actions), Linux, QEMU (virtualization), Git, Postman, Nginx
         \end{onecolentry}
 
         \vspace{0.02 cm}
@@ -318,9 +334,9 @@
             \begin{highlightsforbulletentries}
                 \item \textbf{Diploma in Programming} -- IIT Madras BS Degree Programme.
                 \item \textbf{JetBrains Academy}: Python Developer (265 topics, 10 projects) and SQL for Data Analysis certifications.
-                \item \textbf{Open Source}: Maintained public IIT Madras academic tooling repositories with 100+ combined GitHub stars; contributed to Hacktoberfest repositories.
+                \item \textbf{Open Source}: Maintained IIT Madras academic tooling repositories (100+ combined GitHub stars); Hacktoberfest contributor.
                 \item \textbf{ML Competitions}: Top-5 in Movie Review Sentiment Classification; top 6--7\% in plant super-resolution and hotel cancellation prediction.
-                \item \textbf{Leadership \& Awards}: DevOps Head -- GDG MAIT; IIT Madras Paradox'24 Python finalist; 2nd place Redrob Hackathon, INR 20,000 prize.
+                \item \textbf{Leadership \& Awards}: DevOps Head -- GDG MAIT; IIT Madras Paradox'24 Python finalist; 2nd place Redrob Hackathon (INR 20,000).
             \end{highlightsforbulletentries}
         \end{onecolentry}
 

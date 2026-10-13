@@ -31,3 +31,12 @@ public/
 # Keep source-controlled documentation and config explicit.
 !.gitignore
 !README.md
+
+# Local-only resume variants, build leftovers and scratch work (private variants live in resume-archive)
+resume-*.tex
+!resume-template.tex
+_temp_*
+tmp/
+output/
+scratch/
+*.png
