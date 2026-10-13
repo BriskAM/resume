@@ -11,6 +11,10 @@ The latest generated PDF is available at:
 
 Older generated PDFs, previous resume revisions, and domain-specific resumes are kept in a separate private archive repository for privacy. The deploy workflow also attempts a Catbox mirror upload with a 30-second timeout.
 
+## Privacy
+
+The PDF published here is built without a phone number (`inject-contact.py` removes it from the header in CI); only the email is included. A local `./compile.sh` with a `.env` still produces the full version for applications.
+
 ## Build Locally
 
 ```sh
