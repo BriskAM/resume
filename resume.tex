@@ -265,18 +265,18 @@
         \vspace{0.04 cm}
 
         \begin{onecolentry}
-            \textbf{LeafSR (Plant Leaf Super-Resolution)} \hfill \textit{\footnotesize \printlink{https://briskam.github.io/leafsr}{briskam.github.io/leafsr}}
+            \textbf{Live Company Check (Human-in-the-Loop AI Agent)} \hfill \textit{\footnotesize \printlink{https://github.com/BriskAM/live-company-check}{github.com/BriskAM/live-company-check}}
 
-            \textit{PyTorch, TorchVision, ESRGAN-lite, RRDB Blocks, Docker, GitHub Actions} \hfill \textit{\footnotesize \printlink{https://github.com/BriskAM/leafsr}{github.com/BriskAM/leafsr}}
+            \textit{FastAPI, LangGraph, Temporal, PostgreSQL, Next.js, Gemini, Recharts}
         \end{onecolentry}
 
         \vspace{0.03 cm}
         \begin{onecolentry}
             \begin{highlights}
-                \item Developed a \textbf{4x plant leaf super-resolution} pipeline using an ESRGAN-lite conditional GAN with RRDB blocks and residual prediction over bicubic upsampling.
-                \item Optimized PyTorch training with Charbonnier, VGG perceptual, FFT spectral, residual, and adversarial losses using AMP and EMA checkpointing.
-                \item Improved validation MAE from \textbf{18.20} bicubic baseline to \textbf{16.89}, a \textbf{7.2\%} gain; added 8-way TTA and \textbf{GitHub Actions} smoke tests.
-                \item Built reusable data preparation, inference, and visual comparison scripts for reproducible model evaluation.
+                \item Built an AI agent that checks a company's records, customer reviews, and news live while a reviewer answers its questions, pauses it, and sends feedback; orchestrated with \textbf{LangGraph} and \textbf{Temporal}.
+                \item Designed a general \textbf{chart tool} (line, bar, area; week to year; up to four series) where the model only describes what to plot and code computes every figure, so rating trends and company comparisons never contain invented numbers.
+                \item Streamed an append-only \textbf{PostgreSQL} event log over \textbf{Server-Sent Events} to a \textbf{Next.js} UI that replays identical state on reload; evidence exclusions automatically redraw charts and findings.
+                \item Verified with \textbf{52} backend tests and a \textbf{26-check} live scenario suite covering similar company names, rate limits, and reviewer feedback.
             \end{highlights}
         \end{onecolentry}
 
